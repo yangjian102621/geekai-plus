@@ -1,0 +1,90 @@
+version: '3'
+services:
+  # mysql
+  geekai-mysql:
+    image: mysql:8.0.33
+    container_name: geekai-mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=12345678
+    ports:
+      - "3307:3306"
+    volumes :
+      - ./conf/mysql/my.cnf:/etc/mysql/my.cnf
+      - ./data/mysql/data:/var/lib/mysql
+      - ./logs/mysql:/var/log/mysql
+      - ./data/mysql/init.d:/docker-entrypoint-initdb.d/
+  
+  # redis 
+  geekai-redis:
+    image: redis:6.0.16
+    restart: always 
+    container_name: geekai-redis
+    command: redis-server --requirepass 12345678
+    volumes :
+      - ./data/redis:/data
+    ports:
+      - "6380:6379"
+
+  xxl-job-admin:
+    container_name: xxl-job-admin
+    image: xuxueli/xxl-job-admin:2.4.0
+    restart: always
+    ports:
+      - "8081:8080"
+    environment:
+      - PARAMS=--spring.config.location=/application.properties
+    volumes:
+      - ./logs/xxl-job:/data/applogs
+      - ./conf/xxl-job/application.properties:/application.properties
+
+
+  midjourney-proxy:
+    image: novicezk/midjourney-proxy:2.6.0
+    container_name: midjourney-proxy
+    restart: always
+    ports:
+      - "8082:8080"
+    volumes:
+      - ./conf/mj-proxy:/home/spring/config
+
+
+
+  # 后端 API 程序
+  geekai-api:
+    image: registry.cn-shenzhen.aliyuncs.com/geekmaster/geekai-api:v4.0.5-amd64
+    container_name: geekai-api
+    restart: always
+    depends_on:
+      - geekai-mysql
+      - geekai-redis
+    environment:
+      - DEBUG=false
+      - LOG_LEVEL=info
+      - CONFIG_FILE=config.toml
+    ports:
+      - "5678:5678"
+      - "9999:9999"
+    volumes:
+      - /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime
+      - ./conf/config.toml:/var/www/app/config.toml
+      - ./logs/app:/var/www/app/logs
+      - ./static:/var/www/app/static
+      - ./data/leveldb:/var/www/app/data
+
+  # 前端应用
+  geekai-web:
+    image: registry.cn-shenzhen.aliyuncs.com/geekmaster/geekai-web:v4.0.5-amd64
+    container_name: geekai-web
+    restart: always
+    depends_on:
+      - geekai-api
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./logs/nginx:/var/log/nginx
+      - ./conf/nginx/conf.d:/etc/nginx/conf.d
+      - ./conf/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./conf/nginx/ssl:/etc/nginx/ssl
+
