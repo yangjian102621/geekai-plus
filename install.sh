@@ -43,7 +43,7 @@ else
 fi
 
 echo "Try to download installation package..."
-wget "https://img.r9it.com/geekai/v4.0.6/install.tar.gz" -O install.tar.gz
+wget "https://img.r9it.com/geekai/v4.0.7/install.tar.gz" -O install.tar.gz
 
 mkdir geekai
 tar -xf install.tar.gz -C geekai
