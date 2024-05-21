@@ -70,7 +70,7 @@ WeChatBot = false
 
 [[MjProxyConfigs]]
   Enabled = false
-  ApiURL = "http://midjourney-proxy:8082"
+  ApiURL = "http://geekai-midjourney-proxy:8082"
   Mode = ""
   ApiKey = "sk-geekmaster"
 
@@ -86,13 +86,13 @@ WeChatBot = false
   ApiURL = ""
   ApiKey = ""
 
-[XXLConfig]
-  Enabled = true
-  ServerAddr = "http://xxl-job-admin:8080/xxl-job-admin"
-  ExecutorIp = "geekai-api"
-  ExecutorPort = "9999"
-  AccessToken = "GeekMaster"
-  RegistryKey = "chatgpt-plus"
+[XXLConfig]   # xxl-job 配置，需要你部署 XXL-JOB 定时任务工具，用来定期清理未支付订单和清理过期 VIP，如果你没有启用支付服务，则该服务也无需启动
+  Enabled = true  # 是否启用 XXL JOB 服务
+  ServerAddr = "http://geekai-xxl-job-admin:8080/xxl-job-admin"  # xxl-job-admin 管理地址
+  ExecutorIp = "geekai-api"  # 执行器 IP 地址
+  ExecutorPort = "9999" # 执行器服务端口
+  AccessToken = "GeekMaster"  # 执行器 API 通信 token
+  RegistryKey = "chatgpt-plus"  # 任务注册 key，需要与 xxl-job 管理后台配置一致，请不要随意改动
 
 [AlipayConfig]
   Enabled = false
@@ -115,19 +115,19 @@ WeChatBot = false
   NotifyURL = "https://ai.r9it.com/api/payment/hupipay/notify"
   ReturnURL = ""
 
-[SmtpConfig]
+[SmtpConfig]  # 注意，阿里云服务器禁用了25号端口，请使用 465 端口，并开启 TLS 连接
   UseTls = false
   Host = "smtp.163.com"
   Port = 25
   AppName = "极客学长"
-  From = "test@163.com"
-  Password = ""
+  From = "test@163.com"  # 发件邮箱人地址
+  Password = ""  #邮箱 stmp 服务授权码
 
 [JPayConfig]
   Enabled = false
-  Name = "wechat"
-  AppId = ""
-  PrivateKey = ""
+  Name = "wechat"  # 请不要改动
+  AppId = ""  # 商户 ID
+  PrivateKey = "" # 秘钥
   ApiURL = "https://payjs.cn"
   NotifyURL = "https://ai.r9it.com/api/payment/payjs/notify"
   ReturnURL = ""
