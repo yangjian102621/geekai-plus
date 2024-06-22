@@ -131,3 +131,14 @@ WeChatBot = false
   ApiURL = "https://payjs.cn"
   NotifyURL = "https://ai.r9it.com/api/payment/payjs/notify"
   ReturnURL = ""
+
+# 微信商户支付
+[WechatPayConfig]
+  Enabled = false
+  AppId = "" # 商户应用ID
+  MchId = "" # 商户号
+  SerialNo = "" # API 证书序列号
+  PrivateKey = "certs/alipay/privateKey.txt" # API 证书私钥文件路径，跟支付宝一样，把私钥文件拷贝到对应的路径，证书路径要映射到容器内
+  ApiV3Key = "" # APIV3 私钥，这个是你自己在微信支付平台设置的
+  NotifyURL = "" # 支付成功异步回调地址
+  ReturnURL = "" # 支付成功同步回调地址
