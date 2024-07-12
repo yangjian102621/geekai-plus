@@ -48,7 +48,13 @@ services:
       - "8082:8080"
     volumes:
       - ./conf/mj-proxy:/home/spring/config
-
+      
+  tika:
+    image: "registry.cn-shenzhen.aliyuncs.com/geekmaster/tika:latest"
+    container_name: "tika"
+    restart: always
+    ports:
+      - "9998:9998"
 
 
   # 后端 API 程序

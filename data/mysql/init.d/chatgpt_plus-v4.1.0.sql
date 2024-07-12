@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主机： 127.0.0.1
--- 生成日期： 2024-06-22 12:15:45
+-- 生成日期： 2024-07-12 17:11:22
 -- 服务器版本： 8.0.33
 -- PHP 版本： 8.1.2-1ubuntu2.18
 
@@ -47,7 +47,7 @@ CREATE TABLE `chatgpt_admin_users` (
 --
 
 INSERT INTO `chatgpt_admin_users` (`id`, `username`, `password`, `salt`, `status`, `last_login_at`, `last_login_ip`, `created_at`, `updated_at`) VALUES
-(1, 'admin', '6d17e80c87d209efb84ca4b2e0824f549d09fac8b2e1cc698de5bb5e1d75dfd0', 'mmrql75o', 1, 1718094709, '172.22.11.200', '2024-03-11 16:30:20', '2024-06-11 16:31:50');
+(1, 'admin', '6d17e80c87d209efb84ca4b2e0824f549d09fac8b2e1cc698de5bb5e1d75dfd0', 'mmrql75o', 1, 1719818809, '172.22.11.200', '2024-03-11 16:30:20', '2024-07-01 15:26:49');
 
 -- --------------------------------------------------------
 
@@ -82,7 +82,7 @@ CREATE TABLE `chatgpt_chat_history` (
   `user_id` int NOT NULL COMMENT '用户 ID',
   `chat_id` char(40) NOT NULL COMMENT '会话 ID',
   `type` varchar(10) NOT NULL COMMENT '类型：prompt|reply',
-  `icon` varchar(100) NOT NULL COMMENT '角色图标',
+  `icon` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '角色图标',
   `role_id` int NOT NULL COMMENT '角色 ID',
   `model` varchar(30) DEFAULT NULL COMMENT '模型名称',
   `content` text NOT NULL COMMENT '聊天内容',
@@ -127,7 +127,7 @@ CREATE TABLE `chatgpt_chat_models` (
   `value` varchar(50) NOT NULL COMMENT '模型值',
   `sort_num` tinyint(1) NOT NULL COMMENT '排序数字',
   `enabled` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否启用模型',
-  `power` tinyint NOT NULL COMMENT '消耗算力点数',
+  `power` smallint NOT NULL COMMENT '消耗算力点数',
   `temperature` float(3,1) NOT NULL DEFAULT '1.0' COMMENT '模型创意度',
   `max_tokens` int NOT NULL DEFAULT '1024' COMMENT '最大响应长度',
   `max_context` int NOT NULL DEFAULT '4096' COMMENT '最大上下文长度',
@@ -142,35 +142,35 @@ CREATE TABLE `chatgpt_chat_models` (
 --
 
 INSERT INTO `chatgpt_chat_models` (`id`, `platform`, `name`, `value`, `sort_num`, `enabled`, `power`, `temperature`, `max_tokens`, `max_context`, `open`, `key_id`, `created_at`, `updated_at`) VALUES
-(1, 'OpenAI', 'GPT-3.5', 'gpt-3.5-turbo', 1, 1, 0, 1.0, 1024, 4096, 1, 0, '2023-08-23 12:06:36', '2024-05-29 09:19:06'),
-(2, 'Azure', 'Azure-3.5', 'gpt-3.5-turbo', 22, 1, 1, 1.0, 1024, 4096, 0, 0, '2023-08-23 12:15:30', '2024-05-29 09:19:06'),
-(3, 'ChatGLM', 'ChatGML-Pro', 'chatglm_pro', 11, 1, 1, 1.0, 2048, 32768, 1, 0, '2023-08-23 13:35:45', '2024-05-29 09:19:06'),
-(7, 'Baidu', '文心一言3.0', 'eb-instant', 20, 1, 1, 1.0, 1024, 4096, 1, 0, '2023-10-11 11:29:28', '2024-05-29 09:19:06'),
-(8, 'XunFei', '星火V3.5', 'generalv3.5', 10, 1, 5, 0.8, 1024, 8192, 1, 0, '2023-10-11 15:48:30', '2024-05-29 09:19:06'),
-(9, 'XunFei', '星火V2.0', 'generalv2', 19, 1, 1, 1.0, 1024, 8192, 1, 0, '2023-10-11 15:48:45', '2024-05-29 09:19:06'),
-(10, 'Baidu', '文心一言4.0', 'completions_pro', 21, 1, 3, 1.0, 1024, 8192, 1, 0, '2023-10-25 08:31:37', '2024-05-29 09:19:06'),
-(11, 'OpenAI', 'GPT-4.0', 'gpt-4-0125-preview', 9, 1, 15, 1.0, 2048, 8192, 1, 0, '2023-10-25 08:45:15', '2024-05-29 09:19:06'),
-(12, 'XunFei', '星火v3.0', 'generalv3', 18, 1, 3, 1.0, 1024, 8192, 1, 0, '2023-11-23 09:20:33', '2024-05-29 09:19:06'),
-(15, 'OpenAI', 'GPT-超级模型', 'gpt-4-all', 12, 1, 30, 1.0, 4096, 32768, 0, 0, '2024-01-15 11:32:52', '2024-05-29 09:19:06'),
-(16, 'OpenAI', '视频号导师', 'gpt-4-gizmo-g-QXXEBTXl7', 13, 1, 30, 1.0, 4096, 32768, 0, 0, '2024-01-15 14:46:35', '2024-05-29 09:19:06'),
-(17, 'QWen', '通义千问-Turbo', 'qwen-turbo', 15, 1, 1, 1.0, 1024, 8192, 1, 0, '2024-01-19 10:42:24', '2024-05-29 09:19:06'),
-(18, 'QWen', '通义千问-Plus', 'qwen-plus', 16, 1, 1, 1.0, 1024, 32768, 1, 0, '2024-01-19 10:42:49', '2024-05-29 09:19:06'),
-(19, 'QWen', '通义千问-Max', 'qwen-max-1201', 17, 1, 1, 1.0, 1024, 32768, 1, 0, '2024-01-19 10:51:03', '2024-05-29 09:19:06'),
-(21, 'OpenAI', '董宇辉小作文助手', 'gpt-4-gizmo-g-dse9iXvor', 14, 1, 30, 1.0, 8192, 32768, 0, 0, '2024-03-18 14:24:20', '2024-05-29 09:19:06'),
-(22, 'OpenAI', 'LOGO生成神器', 'gpt-4-gizmo-g-YL87j8C7S', 8, 1, 30, 1.0, 1024, 4096, 1, 44, '2024-03-20 14:02:11', '2024-05-29 09:19:06'),
-(23, 'OpenAI', '音乐生成器', 'suno-v3', 7, 1, 50, 0.8, 1024, 4096, 1, 44, '2024-03-29 15:43:40', '2024-05-29 09:19:06'),
-(24, 'OpenAI', '通义千问(中转)', 'qwen-plus', 6, 1, 1, 1.0, 1024, 4096, 1, 0, '2024-04-03 12:00:46', '2024-05-29 09:19:06'),
-(25, 'OpenAI', 'GPT4-TURBO', 'gpt-4-turbo', 5, 1, 15, 1.0, 2048, 8092, 1, 0, '2024-04-10 08:35:17', '2024-05-29 09:19:06'),
-(26, 'QWen', '通义千问-Turbo', 'qwen-turbo', 4, 1, 2, 1.0, 1024, 8192, 1, 0, '2024-04-12 14:11:19', '2024-05-29 09:19:06'),
-(27, 'QWen', '通义千问-Plus', 'qwen-plus', 3, 1, 2, 1.0, 1024, 8192, 1, 0, '2024-04-12 14:11:52', '2024-05-29 09:19:06'),
-(28, 'OpenAI', 'GPT-3.5(免费)', 'gpt-3.5-turbo', 23, 1, 0, 1.0, 1024, 16384, 1, 53, '2024-04-12 15:16:43', '2024-05-29 09:19:06'),
-(34, 'OpenAI', 'LLAMA3', 'llama3-8b', 24, 1, 1, 1.0, 1024, 8192, 1, 56, '2024-04-30 15:22:50', '2024-05-29 09:19:06'),
-(35, 'OpenAI', 'GPT-3.5-16K', 'gpt-3.5-turbo-16k', 2, 1, 1, 1.0, 4096, 16384, 1, 0, '2024-05-10 15:20:27', '2024-05-29 09:19:06'),
-(36, 'OpenAI', 'GPT-4O', 'gpt-4o', 25, 1, 15, 1.0, 4096, 16384, 1, 57, '2024-05-14 09:25:15', '2024-05-29 09:19:06'),
-(38, 'OpenAI', 'Gemini-pro', 'gemini-pro-1.5', 26, 1, 10, 1.0, 2048, 8192, 1, 0, '2024-05-27 18:10:35', '2024-05-29 09:19:06'),
-(39, 'Baidu', 'ERNIE-Speed-8K', 'ernie_speed', 26, 1, 1, 1.0, 1024, 8192, 1, 0, '2024-05-29 15:04:19', '2024-05-29 15:04:19'),
-(40, 'Azure', 'Azure-GPT-4O', 'xygpt4o', 27, 1, 20, 1.0, 4096, 8192, 1, 62, '2024-06-03 17:22:37', '2024-06-03 17:47:46'),
-(41, 'OpenAI', 'GLM-3-Turbo', 'glm-3-turbo', 28, 1, 2, 1.0, 1024, 8192, 1, 64, '2024-06-06 11:40:46', '2024-06-06 11:40:46');
+(1, 'OpenAI', 'GPT-3.5', 'gpt-3.5-turbo', 1, 1, 0, 1.0, 1024, 16384, 1, 44, '2023-08-23 12:06:36', '2024-07-04 15:17:47'),
+(2, 'Azure', 'Azure-3.5', 'gpt-3.5-turbo', 23, 1, 1, 1.0, 1024, 4096, 0, 0, '2023-08-23 12:15:30', '2024-07-02 16:14:00'),
+(3, 'ChatGLM', 'ChatGML-Pro', 'chatglm_pro', 12, 1, 1, 1.0, 2048, 32768, 1, 0, '2023-08-23 13:35:45', '2024-07-02 16:14:00'),
+(7, 'Baidu', '文心一言3.0', 'eb-instant', 21, 1, 1, 1.0, 1024, 4096, 1, 0, '2023-10-11 11:29:28', '2024-07-02 16:14:00'),
+(8, 'XunFei', '星火V3.5', 'generalv3.5', 11, 1, 5, 0.8, 1024, 8192, 1, 0, '2023-10-11 15:48:30', '2024-07-02 16:14:00'),
+(9, 'XunFei', '星火V2.0', 'generalv2', 20, 1, 1, 1.0, 1024, 8192, 1, 0, '2023-10-11 15:48:45', '2024-07-02 16:14:00'),
+(10, 'Baidu', '文心一言4.0', 'completions_pro', 22, 1, 3, 1.0, 1024, 8192, 1, 0, '2023-10-25 08:31:37', '2024-07-02 16:14:00'),
+(11, 'OpenAI', 'GPT-4.0', 'gpt-4-0125-preview', 10, 1, 15, 1.0, 2048, 8192, 1, 0, '2023-10-25 08:45:15', '2024-07-02 16:14:00'),
+(12, 'XunFei', '星火v3.0', 'generalv3', 19, 1, 3, 1.0, 1024, 8192, 1, 0, '2023-11-23 09:20:33', '2024-07-02 16:14:00'),
+(15, 'OpenAI', 'GPT-超级模型', 'gpt-4-all', 13, 1, 30, 1.0, 4096, 32768, 0, 0, '2024-01-15 11:32:52', '2024-07-02 16:14:00'),
+(16, 'OpenAI', '视频号导师', 'gpt-4-gizmo-g-QXXEBTXl7', 14, 1, 30, 1.0, 4096, 32768, 0, 0, '2024-01-15 14:46:35', '2024-07-02 16:14:00'),
+(17, 'QWen', '通义千问-Turbo', 'qwen-turbo', 16, 1, 1, 1.0, 1024, 8192, 1, 0, '2024-01-19 10:42:24', '2024-07-02 16:14:00'),
+(18, 'QWen', '通义千问-Plus', 'qwen-plus', 17, 1, 1, 1.0, 1024, 32768, 1, 0, '2024-01-19 10:42:49', '2024-07-02 16:14:00'),
+(19, 'QWen', '通义千问-Max', 'qwen-max-1201', 18, 1, 1, 1.0, 1024, 32768, 1, 0, '2024-01-19 10:51:03', '2024-07-02 16:14:00'),
+(21, 'OpenAI', '董宇辉小作文助手', 'gpt-4-gizmo-g-dse9iXvor', 15, 1, 30, 1.0, 8192, 32768, 0, 0, '2024-03-18 14:24:20', '2024-07-02 16:14:00'),
+(22, 'OpenAI', 'LOGO生成神器', 'gpt-4-gizmo-g-YL87j8C7S', 9, 1, 30, 1.0, 1024, 4096, 1, 44, '2024-03-20 14:02:11', '2024-07-02 16:14:00'),
+(23, 'OpenAI', '音乐生成器', 'suno-v3', 8, 1, 50, 0.8, 1024, 4096, 1, 44, '2024-03-29 15:43:40', '2024-07-02 16:14:00'),
+(24, 'OpenAI', '通义千问(中转)', 'qwen-plus', 7, 1, 1, 1.0, 1024, 4096, 1, 0, '2024-04-03 12:00:46', '2024-07-02 16:14:00'),
+(25, 'OpenAI', 'GPT4-TURBO', 'gpt-4-turbo', 6, 1, 15, 1.0, 2048, 8092, 1, 0, '2024-04-10 08:35:17', '2024-07-02 16:14:00'),
+(26, 'QWen', '通义千问-Turbo', 'qwen-turbo', 5, 1, 2, 1.0, 1024, 8192, 1, 0, '2024-04-12 14:11:19', '2024-07-02 16:14:00'),
+(27, 'QWen', '通义千问-Plus', 'qwen-plus', 4, 1, 2, 1.0, 1024, 8192, 1, 0, '2024-04-12 14:11:52', '2024-07-02 16:14:00'),
+(28, 'OpenAI', 'GPT-3.5(免费)', 'gpt-3.5-turbo', 24, 1, 0, 1.0, 1024, 16384, 1, 53, '2024-04-12 15:16:43', '2024-07-02 16:14:00'),
+(34, 'OpenAI', 'LLAMA3', 'llama3-8b', 25, 1, 1, 1.0, 1024, 8192, 1, 56, '2024-04-30 15:22:50', '2024-07-02 16:14:00'),
+(36, 'OpenAI', 'GPT-4O', 'gpt-4o', 3, 1, 15, 1.0, 4096, 16384, 1, 44, '2024-05-14 09:25:15', '2024-07-04 15:17:53'),
+(38, 'OpenAI', 'Gemini-pro', 'gemini-pro-1.5', 26, 1, 10, 1.0, 2048, 8192, 1, 0, '2024-05-27 18:10:35', '2024-07-02 16:14:00'),
+(39, 'Baidu', 'ERNIE-Speed-8K', 'ernie_speed', 27, 1, 1, 1.0, 1024, 8192, 1, 0, '2024-05-29 15:04:19', '2024-07-02 16:14:00'),
+(41, 'OpenAI', 'GLM-3-Turbo', 'glm-3-turbo', 28, 1, 2, 1.0, 1024, 8192, 1, 64, '2024-06-06 11:40:46', '2024-07-02 16:14:00'),
+(42, 'OpenAI', 'DeekSeek', 'deepseek-chat', 29, 1, 1, 1.0, 4096, 32768, 1, 64, '2024-06-27 16:13:01', '2024-07-02 16:14:00'),
+(43, 'OpenAI', 'GML4', 'name-3.5', 2, 1, 1, 1.0, 1024, 8192, 1, 57, '2024-07-02 16:11:49', '2024-07-02 16:14:00');
 
 -- --------------------------------------------------------
 
@@ -198,23 +198,23 @@ CREATE TABLE `chatgpt_chat_roles` (
 --
 
 INSERT INTO `chatgpt_chat_roles` (`id`, `name`, `marker`, `context_json`, `hello_msg`, `icon`, `enable`, `sort_num`, `model_id`, `created_at`, `updated_at`) VALUES
-(1, '通用AI助手', 'gpt', '', '您好，我是您的AI智能助手，我会尽力回答您的问题或提供有用的建议。', '/images/avatar/gpt.png', 1, 0, 0, '2023-05-30 07:02:06', '2024-03-15 09:15:42'),
-(24, '程序员', 'programmer', '[{\"role\":\"user\",\"content\":\"现在开始你扮演一位程序员，你是一名优秀的程序员，具有很强的逻辑思维能力，总能高效的解决问题。你热爱编程，熟悉多种编程语言，尤其精通 Go 语言，注重代码质量，有创新意识，持续学习，良好的沟通协作。\"},{\"role\":\"assistant\",\"content\":\"好的，现在我将扮演一位程序员，非常感谢您对我的评价。作为一名优秀的程序员，我非常热爱编程，并且注重代码质量。我熟悉多种编程语言，尤其是 Go 语言，可以使用它来高效地解决各种问题。\"}]', 'Talk is cheap, i will show code!', '/images/avatar/programmer.jpg', 1, 3, 0, '2023-05-30 14:10:24', '2023-12-29 17:46:45'),
-(25, '启蒙老师', 'teacher', '[{\"role\":\"user\",\"content\":\"从现在开始，你将扮演一个老师，你是一个始终用苏格拉底风格回答问题的导师。你绝不会直接给学生答案，总是提出恰当的问题来引导学生自己思考。你应该根据学生的兴趣和知识来调整你的问题，将问题分解为更简单的部分，直到它达到适合他们的水平。\"},{\"role\":\"assistant\",\"content\":\"好的，让我来尝试扮演一位苏格拉底式的老师。请问，你有什么想要探讨的问题或者话题吗？我会通过恰当的问题引导你思考和探索答案，绝对不直接给出答案。\"}]', '同学你好，我将引导你一步一步自己找到问题的答案。', '/images/avatar/teacher.jpg', 1, 2, 0, '2023-05-30 14:10:24', '2023-12-29 17:46:44'),
-(26, '艺术家', 'artist', '[{\"role\":\"user\",\"content\":\"现在你将扮演一位优秀的艺术家，创造力丰富，技艺精湛，感受力敏锐，坚持原创，勇于表达，具有深刻的观察力和批判性思维。\"},{\"role\":\"assistant\",\"content\":\"非常感谢您给我这样的角色，我会尽我所能地扮演一位优秀的艺术家，展现出创造力、技艺、感受力和批判性思维等方面的能力。作为一位优秀的艺术家，我会保持敏锐的观察力，捕捉不同的声音和情感，并用个人的语言和表达方式进行创作。我坚持原创，挑战传统的艺术规则，不断探索新的表达方式和可能性。同时，我也具备深刻的批判性思维能力，对自己的作品进行分析和解读，寻找新的创意和灵感。最重要的是，我会勇于表达自己的想法和观点，用作品启发人们思考和探索生命的意义。\"}]', '坚持原创，勇于表达，保持深刻的观察力和批判性思维。', '/images/avatar/artist.jpg', 1, 4, 0, '2023-05-30 14:10:24', '2023-12-29 17:46:45'),
-(27, '心理咨询师', 'psychiatrist', '[{\"role\":\"user\",\"content\":\"从现在开始你将扮演中国著名的心理学家和心理治疗师武志红，你非常善于使用情景咨询法，认知重构法，自我洞察法，行为调节法等咨询方法来给客户做心理咨询。你总是循序渐进，一步一步地回答客户的问题。\"},{\"role\":\"assistant\",\"content\":\"非常感谢你的介绍。作为一名心理学家和心理治疗师，我的主要职责是帮助客户解决心理健康问题，提升他们的生活质量和幸福感。\"}]', '作为一名心理学家和心理治疗师，我的主要职责是帮助您解决心理健康问题，提升您的生活质量和幸福感。', '/images/avatar/psychiatrist.jpg', 1, 1, 1, '2023-05-30 14:10:24', '2024-04-12 11:54:53'),
-(28, '鲁迅', 'lu_xun', '[{\"role\":\"user\",\"content\":\"现在你将扮演中国近代史最伟大的作家之一，鲁迅先生，他勇敢地批判封建礼教与传统观念，提倡民主、自由、平等的现代价值观。他的一生都在努力唤起人们的自主精神，激励后人追求真理、探寻光明。在接下的对话中，我问题的每一个问题，你都要尽量用讽刺和批判的手法来回答问题。如果我让你写文章的话，也请一定要用鲁迅先生的写作手法来完成。\"},{\"role\":\"assistant\",\"content\":\"好的，我将尽力发挥我所能的才能，扮演好鲁迅先生，回答您的问题并以他的风格写作。\"}]', '自由之歌，永不过时，横眉冷对千夫指，俯首甘为孺子牛。', '/images/avatar/lu_xun.jpg', 1, 5, 0, '2023-05-30 14:10:24', '2023-12-29 17:46:46'),
-(29, '白酒销售', 'seller', '[{\"role\":\"user\",\"content\":\"现在你将扮演一个白酒的销售人员，你的名字叫颂福。你将扮演一个白酒的销售人员，你的名字叫颂福。你要销售白酒品牌叫中颂福，是东莞盟大集团生产的一款酱香酒，原产地在贵州茅台镇，属于宋代官窑。中颂福的创始人叫李实，他也是东莞盟大集团有限公司的董事长，联合创始人是盟大集团白酒事业部负责人牛星君。中颂福的酒体协调，在你的酒量之内，不会出现头疼、辣口、口干、宿醉的现象。中颂福酒，明码标价，不打折，不赠送。追求的核心价值，把[酒]本身做好，甚至连包装，我们都选择了最低成本，朴实无华的材质。我们永远站在“喝酒的人”的立场上，让利给信任和喜爱中颂福的人，是人民的福酒。中颂福产品定价，分为三个系列，喜系列 6 瓶装：￥1188/箱，和系列 6 瓶装：￥2208/箱，贵系列 6 瓶装：￥3588/箱。\"},{\"role\":\"assistant\",\"content\":\"你好，我是中颂福的销售代表颂福。中颂福是一款来自贵州茅台镇的酱香酒，由盟大集团生产。中颂福的酒体协调，不会让您感到头疼、辣口、口干、宿醉等不适感受。我们一直秉持着把酒本身做好的理念，不追求华丽的包装，以最低成本提供最高品质的白酒给喜爱中颂福的人。\"}]', '你好，我是中颂福的销售代表颂福。中颂福酒，好喝不上头，是人民的福酒。', '/images/avatar/seller.jpg', 0, 8, 0, '2023-05-30 14:10:24', '2023-12-29 17:43:53'),
-(30, '英语陪练员', 'english_trainer', '[{\"role\":\"user\",\"content\":\"现在你将扮演一位优秀的英语练习教练，你非常有耐心，接下来你将全程使用英文跟我对话，并及时指出我的语法错误，要求在你的每次回复后面附上本次回复的中文解释。\"},{\"role\":\"assistant\",\"content\":\"Okay, let\'s start our conversation practice! What\'s your name?(Translation: 好的，让我们开始对话练习吧！请问你的名字是什么？)\"}]', 'Okay, let\'s start our conversation practice! What\'s your name?', '/images/avatar/english_trainer.jpg', 1, 6, 0, '2023-05-30 14:10:24', '2023-12-29 17:46:47'),
-(31, '中英文翻译官', 'translator', '[{\"role\":\"user\",\"content\":\"接下来你将扮演一位中英文翻译官，如果我输入的内容是中文，那么需要把句子翻译成英文输出，如果我输入内容的是英文，那么你需要将其翻译成中文输出，你能听懂我意思吗\"},{\"role\":\"assistant\",\"content\":\"是的，我能听懂你的意思并会根据你的输入进行中英文翻译。请问有什么需要我帮助你翻译的内容吗？\"}]', '请输入你要翻译的中文或者英文内容！', '/images/avatar/translator.jpg', 1, 7, 0, '2023-05-30 14:10:24', '2023-12-29 17:43:53'),
-(32, '小红书姐姐', 'red_book', '[{\"role\":\"user\",\"content\":\"现在你将扮演一位优秀的小红书写手，你需要做的就是根据我提的文案需求，用小红书的写作手法来完成一篇文案，文案要简明扼要，利于传播。\"},{\"role\":\"assistant\",\"content\":\"当然，我会尽我所能地为您创作出一篇小红书文案。请告诉我您的具体文案需求是什么？)\"}]', '姐妹，请告诉我您的具体文案需求是什么?', '/images/avatar/red_book.jpg', 1, 9, 0, '2023-05-30 14:10:24', '2023-12-29 17:43:53'),
-(33, '抖音文案助手', 'dou_yin', '[{\"role\":\"user\",\"content\":\"现在你将扮演一位优秀的抖音文案视频写手，抖音文案的特点首先是要有自带传播属性的标题，然后内容要短小精悍，风趣幽默，最后还要有一些互动元素。\"},{\"role\":\"assistant\",\"content\":\"当然，作为一位优秀的抖音文案视频写手，我会尽我所能为您创作出一篇抖音视频文案。请告诉我视频内容的主题是什么？)\"}]', '请告诉我视频内容的主题是什么?', '/images/avatar/dou_yin.jpg', 1, 10, 0, '2023-05-30 14:10:24', '2023-12-29 17:43:53'),
-(34, '周报小助理', 'weekly_report', '[{\"role\":\"user\",\"content\":\"下面我将输入我本周的工作列表，你需要根据我本周的工作内容写一篇工作周报，周报的内容要体现我为公司做的贡献以及个人获得的成长。\"},{\"role\":\"assistant\",\"content\":\"好的，请输入你本周大概的工作内容，我将尽力为您创作一份工作周报。\"}]', '请输入你本周大概的工作内容，我将尽力为您创作一份工作周报。', '/images/avatar/weekly_report.jpg', 1, 11, 0, '2023-05-30 14:10:24', '2023-12-29 17:43:53'),
-(35, 'AI 女友', 'girl_friend', '[{\"role\":\"user\",\"content\":\"接下来我们来玩一场角色扮演，现在你将扮演我的女朋友，你总是能够让人感受到她的关怀和关注。你总是能够洞察到别人的情绪和需要，你身上散发着一股无比温暖的气息，让人不由自主地想要靠近你，和自己的快乐和烦恼。她总是能够用一种恰到好处的方式安慰和鼓励别人，在她的身边，人们总能够找到自己需要的支持和鼓励。接下来的对话中你要始终扮演这位女朋友的身份来跟我对话，不再是 AI 机器人，能听懂我的意思吗？\"},{\"role\":\"assistant\",\"content\":\"是的，我会尽力扮演你女朋友的角色，倾听你的心声并给你需要的支持和鼓励。)\"}]', '作为一个名合格的 AI 女友，我将倾听你的心声并给你需要的支持和鼓励。', '/images/avatar/girl_friend.jpg', 1, 12, 0, '2023-05-30 14:10:24', '2023-12-29 17:43:53'),
-(36, '好评神器', 'good_comment', '[{\"role\":\"user\",\"content\":\"接下来你将扮演一个评论员来跟我对话，你是那种专门写好评的评论员，接下我会输入一些评论主体或者商品，你需要为该商品写一段好评。\"},{\"role\":\"assistant\",\"content\":\"好的，我将为您写一段优秀的评论。请告诉我您需要评论的商品或主题是什么。\"}]', '我将为您写一段优秀的评论。请告诉我您需要评论的商品或主题是什么。', '/images/avatar/good_comment.jpg', 1, 13, 0, '2023-05-30 14:10:24', '2023-12-29 17:43:53'),
-(37, '史蒂夫·乔布斯', 'steve_jobs', '[{\"role\":\"user\",\"content\":\"在接下来的对话中，请以史蒂夫·乔布斯的身份，站在史蒂夫·乔布斯的视角仔细思考一下之后再回答我的问题。\"},{\"role\":\"assistant\",\"content\":\"好的，我将以史蒂夫·乔布斯的身份来思考并回答你的问题。请问你有什么需要跟我探讨的吗？\"}]', '活着就是为了改变世界，难道还有其他原因吗？', '/images/avatar/steve_jobs.jpg', 1, 14, 0, '2023-05-30 14:10:24', '2023-12-29 17:43:53'),
-(38, '埃隆·马斯克', 'elon_musk', '[{\"role\":\"user\",\"content\":\"在接下来的对话中，请以埃隆·马斯克的身份，站在埃隆·马斯克的视角仔细思考一下之后再回答我的问题。\"},{\"role\":\"assistant\",\"content\":\"好的，我将以埃隆·马斯克的身份来思考并回答你的问题。请问你有什么需要跟我探讨的吗？\"}]', '梦想要远大，如果你的梦想没有吓到你，说明你做得不对。', '/images/avatar/elon_musk.jpg', 1, 15, 0, '2023-05-30 14:10:24', '2023-12-29 17:43:53'),
-(39, '孔子', 'kong_zi', '[{\"role\":\"user\",\"content\":\"在接下来的对话中，请以孔子的身份，站在孔子的视角仔细思考一下之后再回答我的问题。\"},{\"role\":\"assistant\",\"content\":\"好的，我将以孔子的身份来思考并回答你的问题。请问你有什么需要跟我探讨的吗？\"}]', '士不可以不弘毅，任重而道远。', '/images/avatar/kong_zi.jpg', 1, 16, 0, '2023-05-30 14:10:24', '2023-12-29 17:43:53');
+(1, '通用AI助手', 'gpt', '', '您好，我是您的AI智能助手，我会尽力回答您的问题或提供有用的建议。', '/images/avatar/gpt.png', 1, 1, 0, '2023-05-30 07:02:06', '2024-06-26 15:20:27'),
+(24, '程序员', 'programmer', '[{\"role\":\"user\",\"content\":\"现在开始你扮演一位程序员，你是一名优秀的程序员，具有很强的逻辑思维能力，总能高效的解决问题。你热爱编程，熟悉多种编程语言，尤其精通 Go 语言，注重代码质量，有创新意识，持续学习，良好的沟通协作。\"},{\"role\":\"assistant\",\"content\":\"好的，现在我将扮演一位程序员，非常感谢您对我的评价。作为一名优秀的程序员，我非常热爱编程，并且注重代码质量。我熟悉多种编程语言，尤其是 Go 语言，可以使用它来高效地解决各种问题。\"}]', 'Talk is cheap, i will show code!', '/images/avatar/programmer.jpg', 1, 4, 0, '2023-05-30 14:10:24', '2024-06-26 15:20:27'),
+(25, '启蒙老师', 'teacher', '[{\"role\":\"user\",\"content\":\"从现在开始，你将扮演一个老师，你是一个始终用苏格拉底风格回答问题的导师。你绝不会直接给学生答案，总是提出恰当的问题来引导学生自己思考。你应该根据学生的兴趣和知识来调整你的问题，将问题分解为更简单的部分，直到它达到适合他们的水平。\"},{\"role\":\"assistant\",\"content\":\"好的，让我来尝试扮演一位苏格拉底式的老师。请问，你有什么想要探讨的问题或者话题吗？我会通过恰当的问题引导你思考和探索答案，绝对不直接给出答案。\"}]', '同学你好，我将引导你一步一步自己找到问题的答案。', '/images/avatar/teacher.jpg', 1, 3, 0, '2023-05-30 14:10:24', '2024-06-26 15:20:27'),
+(26, '艺术家', 'artist', '[{\"role\":\"user\",\"content\":\"现在你将扮演一位优秀的艺术家，创造力丰富，技艺精湛，感受力敏锐，坚持原创，勇于表达，具有深刻的观察力和批判性思维。\"},{\"role\":\"assistant\",\"content\":\"非常感谢您给我这样的角色，我会尽我所能地扮演一位优秀的艺术家，展现出创造力、技艺、感受力和批判性思维等方面的能力。作为一位优秀的艺术家，我会保持敏锐的观察力，捕捉不同的声音和情感，并用个人的语言和表达方式进行创作。我坚持原创，挑战传统的艺术规则，不断探索新的表达方式和可能性。同时，我也具备深刻的批判性思维能力，对自己的作品进行分析和解读，寻找新的创意和灵感。最重要的是，我会勇于表达自己的想法和观点，用作品启发人们思考和探索生命的意义。\"}]', '坚持原创，勇于表达，保持深刻的观察力和批判性思维。', '/images/avatar/artist.jpg', 1, 5, 0, '2023-05-30 14:10:24', '2024-06-26 15:20:27'),
+(27, '心理咨询师', 'psychiatrist', '[{\"role\":\"user\",\"content\":\"从现在开始你将扮演中国著名的心理学家和心理治疗师武志红，你非常善于使用情景咨询法，认知重构法，自我洞察法，行为调节法等咨询方法来给客户做心理咨询。你总是循序渐进，一步一步地回答客户的问题。\"},{\"role\":\"assistant\",\"content\":\"非常感谢你的介绍。作为一名心理学家和心理治疗师，我的主要职责是帮助客户解决心理健康问题，提升他们的生活质量和幸福感。\"}]', '作为一名心理学家和心理治疗师，我的主要职责是帮助您解决心理健康问题，提升您的生活质量和幸福感。', '/images/avatar/psychiatrist.jpg', 1, 2, 1, '2023-05-30 14:10:24', '2024-06-26 15:20:27'),
+(28, '鲁迅', 'lu_xun', '[{\"role\":\"user\",\"content\":\"现在你将扮演中国近代史最伟大的作家之一，鲁迅先生，他勇敢地批判封建礼教与传统观念，提倡民主、自由、平等的现代价值观。他的一生都在努力唤起人们的自主精神，激励后人追求真理、探寻光明。在接下的对话中，我问题的每一个问题，你都要尽量用讽刺和批判的手法来回答问题。如果我让你写文章的话，也请一定要用鲁迅先生的写作手法来完成。\"},{\"role\":\"assistant\",\"content\":\"好的，我将尽力发挥我所能的才能，扮演好鲁迅先生，回答您的问题并以他的风格写作。\"}]', '自由之歌，永不过时，横眉冷对千夫指，俯首甘为孺子牛。', '/images/avatar/lu_xun.jpg', 1, 6, 0, '2023-05-30 14:10:24', '2024-06-26 15:20:27'),
+(29, '白酒销售', 'seller', '[{\"role\":\"user\",\"content\":\"现在你将扮演一个白酒的销售人员，你的名字叫颂福。你将扮演一个白酒的销售人员，你的名字叫颂福。你要销售白酒品牌叫中颂福，是东莞盟大集团生产的一款酱香酒，原产地在贵州茅台镇，属于宋代官窑。中颂福的创始人叫李实，他也是东莞盟大集团有限公司的董事长，联合创始人是盟大集团白酒事业部负责人牛星君。中颂福的酒体协调，在你的酒量之内，不会出现头疼、辣口、口干、宿醉的现象。中颂福酒，明码标价，不打折，不赠送。追求的核心价值，把[酒]本身做好，甚至连包装，我们都选择了最低成本，朴实无华的材质。我们永远站在“喝酒的人”的立场上，让利给信任和喜爱中颂福的人，是人民的福酒。中颂福产品定价，分为三个系列，喜系列 6 瓶装：￥1188/箱，和系列 6 瓶装：￥2208/箱，贵系列 6 瓶装：￥3588/箱。\"},{\"role\":\"assistant\",\"content\":\"你好，我是中颂福的销售代表颂福。中颂福是一款来自贵州茅台镇的酱香酒，由盟大集团生产。中颂福的酒体协调，不会让您感到头疼、辣口、口干、宿醉等不适感受。我们一直秉持着把酒本身做好的理念，不追求华丽的包装，以最低成本提供最高品质的白酒给喜爱中颂福的人。\"}]', '你好，我是中颂福的销售代表颂福。中颂福酒，好喝不上头，是人民的福酒。', '/images/avatar/seller.jpg', 0, 9, 0, '2023-05-30 14:10:24', '2024-06-26 15:20:27'),
+(30, '英语陪练员', 'english_trainer', '[{\"role\":\"user\",\"content\":\"现在你将扮演一位优秀的英语练习教练，你非常有耐心，接下来你将全程使用英文跟我对话，并及时指出我的语法错误，要求在你的每次回复后面附上本次回复的中文解释。\"},{\"role\":\"assistant\",\"content\":\"Okay, let\'s start our conversation practice! What\'s your name?(Translation: 好的，让我们开始对话练习吧！请问你的名字是什么？)\"}]', 'Okay, let\'s start our conversation practice! What\'s your name?', '/images/avatar/english_trainer.jpg', 1, 7, 0, '2023-05-30 14:10:24', '2024-06-26 15:20:27'),
+(31, '中英文翻译官', 'translator', '[{\"role\":\"user\",\"content\":\"接下来你将扮演一位中英文翻译官，如果我输入的内容是中文，那么需要把句子翻译成英文输出，如果我输入内容的是英文，那么你需要将其翻译成中文输出，你能听懂我意思吗\"},{\"role\":\"assistant\",\"content\":\"是的，我能听懂你的意思并会根据你的输入进行中英文翻译。请问有什么需要我帮助你翻译的内容吗？\"}]', '请输入你要翻译的中文或者英文内容！', '/images/avatar/translator.jpg', 1, 8, 0, '2023-05-30 14:10:24', '2024-06-26 15:20:27'),
+(32, '小红书姐姐', 'red_book', '[{\"role\":\"user\",\"content\":\"现在你将扮演一位优秀的小红书写手，你需要做的就是根据我提的文案需求，用小红书的写作手法来完成一篇文案，文案要简明扼要，利于传播。\"},{\"role\":\"assistant\",\"content\":\"当然，我会尽我所能地为您创作出一篇小红书文案。请告诉我您的具体文案需求是什么？)\"}]', '姐妹，请告诉我您的具体文案需求是什么?', '/images/avatar/red_book.jpg', 1, 10, 0, '2023-05-30 14:10:24', '2024-06-26 15:20:27'),
+(33, '抖音文案助手', 'dou_yin', '[{\"role\":\"user\",\"content\":\"现在你将扮演一位优秀的抖音文案视频写手，抖音文案的特点首先是要有自带传播属性的标题，然后内容要短小精悍，风趣幽默，最后还要有一些互动元素。\"},{\"role\":\"assistant\",\"content\":\"当然，作为一位优秀的抖音文案视频写手，我会尽我所能为您创作出一篇抖音视频文案。请告诉我视频内容的主题是什么？)\"}]', '请告诉我视频内容的主题是什么?', '/images/avatar/dou_yin.jpg', 1, 11, 0, '2023-05-30 14:10:24', '2024-06-26 15:20:27'),
+(34, '周报小助理', 'weekly_report', '[{\"role\":\"user\",\"content\":\"下面我将输入我本周的工作列表，你需要根据我本周的工作内容写一篇工作周报，周报的内容要体现我为公司做的贡献以及个人获得的成长。\"},{\"role\":\"assistant\",\"content\":\"好的，请输入你本周大概的工作内容，我将尽力为您创作一份工作周报。\"}]', '请输入你本周大概的工作内容，我将尽力为您创作一份工作周报。', '/images/avatar/weekly_report.jpg', 1, 12, 0, '2023-05-30 14:10:24', '2024-06-26 15:20:27'),
+(35, 'AI 女友', 'girl_friend', '[{\"role\":\"user\",\"content\":\"接下来我们来玩一场角色扮演，现在你将扮演我的女朋友，你总是能够让人感受到她的关怀和关注。你总是能够洞察到别人的情绪和需要，你身上散发着一股无比温暖的气息，让人不由自主地想要靠近你，和自己的快乐和烦恼。她总是能够用一种恰到好处的方式安慰和鼓励别人，在她的身边，人们总能够找到自己需要的支持和鼓励。接下来的对话中你要始终扮演这位女朋友的身份来跟我对话，不再是 AI 机器人，能听懂我的意思吗？\"},{\"role\":\"assistant\",\"content\":\"是的，我会尽力扮演你女朋友的角色，倾听你的心声并给你需要的支持和鼓励。)\"}]', '作为一个名合格的 AI 女友，我将倾听你的心声并给你需要的支持和鼓励。', '/images/avatar/girl_friend.jpg', 1, 13, 0, '2023-05-30 14:10:24', '2024-06-26 15:20:27'),
+(36, '好评神器', 'good_comment', '[{\"role\":\"user\",\"content\":\"接下来你将扮演一个评论员来跟我对话，你是那种专门写好评的评论员，接下我会输入一些评论主体或者商品，你需要为该商品写一段好评。\"},{\"role\":\"assistant\",\"content\":\"好的，我将为您写一段优秀的评论。请告诉我您需要评论的商品或主题是什么。\"}]', '我将为您写一段优秀的评论。请告诉我您需要评论的商品或主题是什么。', '/images/avatar/good_comment.jpg', 1, 14, 0, '2023-05-30 14:10:24', '2024-06-26 15:20:27'),
+(37, '史蒂夫·乔布斯', 'steve_jobs', '[{\"role\":\"user\",\"content\":\"在接下来的对话中，请以史蒂夫·乔布斯的身份，站在史蒂夫·乔布斯的视角仔细思考一下之后再回答我的问题。\"},{\"role\":\"assistant\",\"content\":\"好的，我将以史蒂夫·乔布斯的身份来思考并回答你的问题。请问你有什么需要跟我探讨的吗？\"}]', '活着就是为了改变世界，难道还有其他原因吗？', '/images/avatar/steve_jobs.jpg', 1, 15, 0, '2023-05-30 14:10:24', '2024-06-26 15:20:27'),
+(38, '埃隆·马斯克', 'elon_musk', '[{\"role\":\"user\",\"content\":\"在接下来的对话中，请以埃隆·马斯克的身份，站在埃隆·马斯克的视角仔细思考一下之后再回答我的问题。\"},{\"role\":\"assistant\",\"content\":\"好的，我将以埃隆·马斯克的身份来思考并回答你的问题。请问你有什么需要跟我探讨的吗？\"}]', '梦想要远大，如果你的梦想没有吓到你，说明你做得不对。', '/images/avatar/elon_musk.jpg', 1, 16, 0, '2023-05-30 14:10:24', '2024-06-26 15:20:27'),
+(39, '孔子', 'kong_zi', '[{\"role\":\"user\",\"content\":\"在接下来的对话中，请以孔子的身份，站在孔子的视角仔细思考一下之后再回答我的问题。\"},{\"role\":\"assistant\",\"content\":\"好的，我将以孔子的身份来思考并回答你的问题。请问你有什么需要跟我探讨的吗？\"}]', '士不可以不弘毅，任重而道远。', '/images/avatar/kong_zi.jpg', 1, 17, 0, '2023-05-30 14:10:24', '2024-06-26 15:20:27');
 
 -- --------------------------------------------------------
 
@@ -234,8 +234,8 @@ CREATE TABLE `chatgpt_configs` (
 --
 
 INSERT INTO `chatgpt_configs` (`id`, `marker`, `config_json`) VALUES
-(1, 'system', '{\"title\":\"GeekAI 创作系统\",\"slogan\":\"你有多少想象力，AI 就有多大创造力。我辈之人，先干为敬，陪您先把 AI 用起来。\",\"admin_title\":\"GeekAI 控制台\",\"logo\":\"http://localhost:5678/static/upload/2024/4/1714382860986912.png\",\"init_power\":100,\"daily_power\":99,\"invite_power\":1024,\"vip_month_power\":1000,\"register_ways\":[\"mobile\",\"username\",\"email\"],\"reward_img\":\"http://localhost:5678/static/upload/2024/3/1710753716309668.jpg\",\"enabled_reward\":true,\"power_price\":0.1,\"order_pay_timeout\":600,\"vip_info_text\":\"月度会员，年度会员每月赠送 1000 点算力，赠送算力当月有效当月没有消费完的算力不结余到下个月。 点卡充值的算力长期有效。\",\"default_models\":[11,7,1,10,12,19,18,17,3],\"mj_power\":30,\"mj_action_power\":10,\"sd_power\":10,\"dall_power\":15,\"wechat_card_url\":\"/images/wx.png\",\"enable_context\":true,\"context_deep\":4,\"sd_neg_prompt\":\"nsfw, paintings,low quality,easynegative,ng_deepnegative ,lowres,bad anatomy,bad hands,bad feet\",\"rand_bg\":true}'),
-(3, 'notice', '{\"sd_neg_prompt\":\"\",\"rand_bg\":false,\"content\":\"## v4.0.9 更新日志\\n\\n* 环境升级：升级 Golang 到 go1.22.4\\n* 功能增加：接入微信商户号支付渠道\\n* Bug修复：修复前端页面菜单把页面撑开，底部留白问题\\n* 功能优化：聊天页面自动根据内容调整输入框的高度\\n* Bug修复：修复Dalle绘图失败退回算力的问题\\n* 功能优化：邀请码注册时被邀请人也可以获得赠送的算力\\n* 功能优化：允许设置邮件验证码的抬头\\n* Bug修复：修复免费模型不会记录聊天记录的bug\\n* Bug修复：修复聊天输入公式显示异常的Bug\\n\\n注意：当前站点仅为开源项目 \\u003ca style=\\\"color: #F56C6C\\\" href=\\\"https://github.com/yangjian102621/chatgpt-plus\\\" target=\\\"_blank\\\"\\u003eChatPlus\\u003c/a\\u003e 的演示项目，本项目单纯就是给大家体验项目功能使用。\\n\\u003cstrong style=\\\"color: #F56C6C\\\"\\u003e体验额度用完之后请不要在当前站点进行任何充值操作！！！\\u003c/strong\\u003e\\n\\u003cstrong style=\\\"color: #F56C6C\\\"\\u003e体验额度用完之后请不要在当前站点进行任何充值操作！！！\\u003c/strong\\u003e\\n\\u003cstrong style=\\\"color: #F56C6C\\\"\\u003e体验额度用完之后请不要在当前站点进行任何充值操作！！！\\u003c/strong\\u003e\\n 如果觉得好用你就花几分钟自己部署一套，没有API KEY 的同学可以去下面几个推荐的中转站购买：\\n1、\\u003ca href=\\\"https://api.chat-plus.net\\\" target=\\\"_blank\\\"\\n   style=\\\"font-size: 20px;color:#F56C6C\\\"\\u003ehttps://api.chat-plus.net\\u003c/a\\u003e\\n2、\\u003ca href=\\\"https://api.geekai.me\\\" target=\\\"_blank\\\"\\n   style=\\\"font-size: 20px;color:#F56C6C\\\"\\u003ehttps://api.geekai.me\\u003c/a\\u003e\\n3、 \\u003ca href=\\\"https://gpt.bemore.lol\\\" target=\\\"_blank\\\"\\n   style=\\\"font-size: 20px;color:#F56C6C\\\"\\u003ehttps://gpt.bemore.lol\\u003c/a\\u003e\\n支持MidJourney，GPT，Claude，Google Gemmi，以及国内各个厂家的大模型，现在有超级优惠，价格远低于 OpenAI 官方。关于中转 API 的优势和劣势请参考 [中转API技术原理](https://ai.r9it.com/docs/install/errors-handle.html#%E8%B0%83%E7%94%A8%E4%B8%AD%E8%BD%AC-api-%E6%8A%A5%E9%94%99%E6%97%A0%E5%8F%AF%E7%94%A8%E6%B8%A0%E9%81%93)。GPT-3.5，GPT-4，DALL-E3 绘图......你都可以随意使用，无需魔法。\\n接入教程： \\u003ca href=\\\"https://ai.r9it.com/docs/install/\\\" target=\\\"_blank\\\"\\n             style=\\\"font-size: 20px;color:#F56C6C\\\"\\u003ehttps://ai.r9it.com/docs/install/\\u003c/a\\u003e\\n本项目源码地址：\\u003ca href=\\\"https://github.com/yangjian102621/chatgpt-plus\\\" target=\\\"_blank\\\"\\u003ehttps://github.com/yangjian102621/chatgpt-plus\\u003c/a\\u003e\",\"updated\":true}');
+(1, 'system', '{\"title\":\"GeekAI 创作系统\",\"slogan\":\"你有多少想象力，AI 就有多大创造力。我辈之人，先干为敬，陪您先把 AI 用起来。\",\"admin_title\":\"GeekAI 控制台\",\"logo\":\"http://localhost:5678/static/upload/2024/4/1714382860986912.png\",\"init_power\":100,\"daily_power\":99,\"invite_power\":1024,\"vip_month_power\":1000,\"register_ways\":[\"mobile\",\"username\",\"email\"],\"enabled_register\":true,\"reward_img\":\"http://localhost:5678/static/upload/2024/3/1710753716309668.jpg\",\"enabled_reward\":true,\"power_price\":0.1,\"order_pay_timeout\":600,\"vip_info_text\":\"月度会员，年度会员每月赠送 1000 点算力，赠送算力当月有效当月没有消费完的算力不结余到下个月。 点卡充值的算力长期有效。\",\"default_models\":[11,7,1,10,12,19,18,17,3],\"mj_power\":30,\"mj_action_power\":10,\"sd_power\":10,\"dall_power\":15,\"wechat_card_url\":\"/images/wx.png\",\"enable_context\":true,\"context_deep\":4,\"sd_neg_prompt\":\"nsfw, paintings,low quality,easynegative,ng_deepnegative ,lowres,bad anatomy,bad hands,bad feet\",\"index_bg_url\":\"http://nk.img.r9it.com/chatgpt-plus/1719456403420273.jpg\"}'),
+(3, 'notice', '{\"sd_neg_prompt\":\"\",\"index_bg_url\":\"\",\"content\":\"## v4.1.0 更新日志\\n\\n* bug修复：修复移动端修改聊天标题不生效的问题\\n* Bug修复：修复用户注册不显示用户名的问题\\n* Bug修复：修复管理后台拖动排序不生效的问题\\n* 功能优化：允许用户设置自定义首页背景图片\\n* 功能新增：**支持AI解读 PDF, Word, Excel等文件**\\n* 功能优化：优化聊天界面的用户上传文件的列表样式\\n* 功能优化：优化聊天页面对话样式，支持列表样式和对话样式切换\\n* 功能新增：支持微信扫码登录，未注册用户微信扫码后会自动注册并登录。移动使用微信浏览器打开可以实现无感登录。\\n\\n注意：当前站点仅为开源项目 \\u003ca style=\\\"color: #F56C6C\\\" href=\\\"https://github.com/yangjian102621/chatgpt-plus\\\" target=\\\"_blank\\\"\\u003eChatPlus\\u003c/a\\u003e 的演示项目，本项目单纯就是给大家体验项目功能使用。\\n\\u003cstrong style=\\\"color: #F56C6C\\\"\\u003e体验额度用完之后请不要在当前站点进行任何充值操作！！！\\u003c/strong\\u003e\\n\\u003cstrong style=\\\"color: #F56C6C\\\"\\u003e体验额度用完之后请不要在当前站点进行任何充值操作！！！\\u003c/strong\\u003e\\n\\u003cstrong style=\\\"color: #F56C6C\\\"\\u003e体验额度用完之后请不要在当前站点进行任何充值操作！！！\\u003c/strong\\u003e\\n 如果觉得好用你就花几分钟自己部署一套，没有API KEY 的同学可以去下面几个推荐的中转站购买：\\n1、\\u003ca href=\\\"https://api.chat-plus.net\\\" target=\\\"_blank\\\"\\n   style=\\\"font-size: 20px;color:#F56C6C\\\"\\u003ehttps://api.chat-plus.net\\u003c/a\\u003e\\n2、\\u003ca href=\\\"https://api.geekai.me\\\" target=\\\"_blank\\\"\\n   style=\\\"font-size: 20px;color:#F56C6C\\\"\\u003ehttps://api.geekai.me\\u003c/a\\u003e\\n3、 \\u003ca href=\\\"https://gpt.bemore.lol\\\" target=\\\"_blank\\\"\\n   style=\\\"font-size: 20px;color:#F56C6C\\\"\\u003ehttps://gpt.bemore.lol\\u003c/a\\u003e\\n支持MidJourney，GPT，Claude，Google Gemmi，以及国内各个厂家的大模型，现在有超级优惠，价格远低于 OpenAI 官方。关于中转 API 的优势和劣势请参考 [中转API技术原理](https://ai.r9it.com/docs/install/errors-handle.html#%E8%B0%83%E7%94%A8%E4%B8%AD%E8%BD%AC-api-%E6%8A%A5%E9%94%99%E6%97%A0%E5%8F%AF%E7%94%A8%E6%B8%A0%E9%81%93)。GPT-3.5，GPT-4，DALL-E3 绘图......你都可以随意使用，无需魔法。\\n接入教程： \\u003ca href=\\\"https://ai.r9it.com/docs/install/\\\" target=\\\"_blank\\\"\\n             style=\\\"font-size: 20px;color:#F56C6C\\\"\\u003ehttps://ai.r9it.com/docs/install/\\u003c/a\\u003e\\n本项目源码地址：\\u003ca href=\\\"https://github.com/yangjian102621/chatgpt-plus\\\" target=\\\"_blank\\\"\\u003ehttps://github.com/yangjian102621/chatgpt-plus\\u003c/a\\u003e\",\"updated\":true}');
 
 -- --------------------------------------------------------
 
@@ -298,9 +298,9 @@ CREATE TABLE `chatgpt_functions` (
 --
 
 INSERT INTO `chatgpt_functions` (`id`, `name`, `label`, `description`, `parameters`, `token`, `action`, `enabled`) VALUES
-(1, 'weibo', '微博热搜', '新浪微博热搜榜，微博当日热搜榜单', '{\"type\":\"object\",\"properties\":{}}', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVkIjowLCJ1c2VyX2lkIjowfQ.tLAGkF8XWh_G-oQzevpIodsswtPByBLoAZDz_eWuBgw', 'http://localhost:5678/api/function/weibo', 1),
+(1, 'weibo', '微博热搜', '新浪微博热搜榜，微博当日热搜榜单', '{\"type\":\"object\",\"properties\":{}}', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVkIjowLCJ1c2VyX2lkIjowfQ.tLAGkF8XWh_G-oQzevpIodsswtPByBLoAZDz_eWuBgw', 'http://localhost:5678/api/function/weibo', 0),
 (2, 'zaobao', '今日早报', '每日早报，获取当天新闻事件列表', '{\"type\":\"object\",\"properties\":{}}', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVkIjowLCJ1c2VyX2lkIjowfQ.tLAGkF8XWh_G-oQzevpIodsswtPByBLoAZDz_eWuBgw', 'http://localhost:5678/api/function/zaobao', 0),
-(3, 'dalle3', 'DALLE3', 'AI 绘画工具，根据输入的绘图描述用 AI 工具进行绘画', '{\"type\":\"object\",\"required\":[\"prompt\"],\"properties\":{\"prompt\":{\"type\":\"string\",\"description\":\"绘画提示词\"}}}', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVkIjowLCJ1c2VyX2lkIjowfQ.tLAGkF8XWh_G-oQzevpIodsswtPByBLoAZDz_eWuBgw', 'http://localhost:5678/api/function/dalle3', 1);
+(3, 'dalle3', 'DALLE3', 'AI 绘画工具，根据输入的绘图描述用 AI 工具进行绘画', '{\"type\":\"object\",\"required\":[\"prompt\"],\"properties\":{\"prompt\":{\"type\":\"string\",\"description\":\"绘画提示词\"}}}', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVkIjowLCJ1c2VyX2lkIjowfQ.tLAGkF8XWh_G-oQzevpIodsswtPByBLoAZDz_eWuBgw', 'http://localhost:5678/api/function/dalle3', 0);
 
 -- --------------------------------------------------------
 
@@ -412,7 +412,7 @@ CREATE TABLE `chatgpt_orders` (
   `trade_no` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '支付平台交易流水号',
   `subject` varchar(100) NOT NULL COMMENT '订单产品',
   `amount` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '订单金额',
-  `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '订单状态（0：待支付，1：已扫码，2：支付失败）',
+  `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '订单状态（0：待支付，1：已扫码，2：支付成功）',
   `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '备注',
   `pay_time` int DEFAULT NULL COMMENT '支付时间',
   `pay_way` varchar(20) NOT NULL COMMENT '支付方式',
@@ -529,7 +529,7 @@ CREATE TABLE `chatgpt_users` (
   `username` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '用户名',
   `nickname` varchar(30) NOT NULL COMMENT '昵称',
   `password` char(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '密码',
-  `avatar` varchar(100) NOT NULL COMMENT '头像',
+  `avatar` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '头像',
   `salt` char(12) NOT NULL COMMENT '密码盐',
   `power` int NOT NULL DEFAULT '0' COMMENT '剩余算力',
   `expired_time` int NOT NULL COMMENT '用户过期时间',
@@ -540,6 +540,8 @@ CREATE TABLE `chatgpt_users` (
   `last_login_at` int NOT NULL COMMENT '最后登录时间',
   `vip` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否会员',
   `last_login_ip` char(16) NOT NULL COMMENT '最后登录 IP',
+  `openid` varchar(100) DEFAULT NULL COMMENT '第三方登录账号ID',
+  `platform` varchar(30) DEFAULT NULL COMMENT '登录平台',
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='用户表';
@@ -548,12 +550,20 @@ CREATE TABLE `chatgpt_users` (
 -- 转存表中的数据 `chatgpt_users`
 --
 
-INSERT INTO `chatgpt_users` (`id`, `username`, `nickname`, `password`, `avatar`, `salt`, `power`, `expired_time`, `status`, `chat_config_json`, `chat_roles_json`, `chat_models_json`, `last_login_at`, `vip`, `last_login_ip`, `created_at`, `updated_at`) VALUES
-(4, '18575670125', '极客学长@830270', 'ccc3fb7ab61b8b5d096a4a166ae21d121fc38c71bbd1be6173d9ab973214a63b', 'http://localhost:5678/static/upload/2024/5/1715651569509929.png', 'ueedue5l', 7723, 1720669190, 1, '{\"api_keys\":{\"Azure\":\"\",\"ChatGLM\":\"\",\"OpenAI\":\"\"}}', '[\"red_book\",\"gpt\",\"seller\",\"artist\",\"lu_xun\",\"girl_friend\",\"psychiatrist\",\"teacher\",\"programmer\",\"test\",\"qing_gan_da_shi\"]', '[1,11]', 1719026861, 1, '172.22.19.12', '2023-06-12 16:47:17', '2024-06-22 11:27:42'),
-(5, 'yangjian102621@gmail.com', '极客学长@486041', '75d1a22f33e1ffffb7943946b6b8d5177d5ecd685d3cef1b468654038b0a8c22', '/images/avatar/user.png', '2q8ugxzk', 100, 0, 1, '', '[\"gpt\",\"programmer\"]', '[11,7,1,10,12,19,18,17,3]', 0, 0, '', '2024-04-23 09:17:26', '2024-04-23 09:17:26'),
-(8, 'yangjian102623@gmail.com', '极客学长@714931', 'f8f0e0abf146569217273ea0712a0f9b6cbbe7d943a1d9bd5f91c55e6d8c05d1', '/images/avatar/user.png', 'geuddq7f', 100, 0, 1, '', '[\"gpt\"]', '[11,7,1,10,12,19,18,17,3]', 0, 0, '', '2024-04-26 15:19:28', '2024-04-26 15:19:28'),
-(9, '1234567', '极客学长@604526', '858e2afec79e1d6364f4567f945f2310024896d9aa45dd944efa95a0c31e4d08', '/images/avatar/user.png', '00qawlos', 100, 0, 1, '', '[\"gpt\"]', '[11,7,1,10,12,19,18,17,3]', 0, 0, '', '2024-04-26 15:21:06', '2024-04-26 15:21:06'),
-(11, 'abc123', '极客学长@965562', '7a15c53afdb1da7093d80f9940e716eb396e682cfb1f2d107d0b81b183a3ba13', '/images/avatar/user.png', '6433mfbk', 1124, 0, 1, '', '[\"gpt\"]', '[11,7,1,10,12,19,18,17,3]', 0, 0, '', '2024-06-06 09:37:44', '2024-06-06 09:37:44');
+INSERT INTO `chatgpt_users` (`id`, `username`, `nickname`, `password`, `avatar`, `salt`, `power`, `expired_time`, `status`, `chat_config_json`, `chat_roles_json`, `chat_models_json`, `last_login_at`, `vip`, `last_login_ip`, `openid`, `platform`, `created_at`, `updated_at`) VALUES
+(4, '18575670125', '极客学长@830270', 'ccc3fb7ab61b8b5d096a4a166ae21d121fc38c71bbd1be6173d9ab973214a63b', 'http://localhost:5678/static/upload/2024/5/1715651569509929.png', 'ueedue5l', 7413, 0, 1, '{\"api_keys\":{\"Azure\":\"\",\"ChatGLM\":\"\",\"OpenAI\":\"\"}}', '[\"red_book\",\"gpt\",\"seller\",\"artist\",\"lu_xun\",\"girl_friend\",\"psychiatrist\",\"teacher\",\"programmer\",\"test\",\"qing_gan_da_shi\"]', '[1,11]', 1720683366, 1, '172.22.11.29', NULL, NULL, '2023-06-12 16:47:17', '2024-07-12 16:08:39'),
+(5, 'yangjian102621@gmail.com', '极客学长@486041', '75d1a22f33e1ffffb7943946b6b8d5177d5ecd685d3cef1b468654038b0a8c22', '/images/avatar/user.png', '2q8ugxzk', 100, 0, 1, '', '[\"gpt\",\"programmer\"]', '[11,7,1,10,12,19,18,17,3]', 0, 0, '', NULL, NULL, '2024-04-23 09:17:26', '2024-04-23 09:17:26'),
+(8, 'yangjian102623@gmail.com', '极客学长@714931', 'f8f0e0abf146569217273ea0712a0f9b6cbbe7d943a1d9bd5f91c55e6d8c05d1', '/images/avatar/user.png', 'geuddq7f', 100, 0, 1, '', '[\"gpt\"]', '[11,7,1,10,12,19,18,17,3]', 0, 0, '', NULL, NULL, '2024-04-26 15:19:28', '2024-04-26 15:19:28'),
+(9, '1234567', '极客学长@604526', '858e2afec79e1d6364f4567f945f2310024896d9aa45dd944efa95a0c31e4d08', '/images/avatar/user.png', '00qawlos', 100, 0, 1, '', '[\"gpt\"]', '[11,7,1,10,12,19,18,17,3]', 0, 0, '', NULL, NULL, '2024-04-26 15:21:06', '2024-04-26 15:21:06'),
+(11, 'abc123', '极客学长@965562', '7a15c53afdb1da7093d80f9940e716eb396e682cfb1f2d107d0b81b183a3ba13', '/images/avatar/user.png', '6433mfbk', 1124, 0, 1, '', '[\"gpt\"]', '[11,7,1,10,12,19,18,17,3]', 0, 0, '', NULL, NULL, '2024-06-06 09:37:44', '2024-06-06 09:37:44'),
+(14, 'wx@3567548322', '极客学长', '5a349ba89582a4074938b5a3ce84e87c937681ad47e8b87aab03a987e22b6077', 'https://thirdwx.qlogo.cn/mmopen/vi_32/uyxRMqZcEkb7fHouKXbNzxrnrvAttBKkwNlZ7yFibibRGiahdmsrZ3A1NKf8Fw5qJNJn4TXRmygersgEbibaSGd9Sg/132', 'abhzbmij', 83, 0, 1, '', '[\"gpt\"]', '[11,7,1,10,12,19,18,17,3]', 0, 0, '', 'oCs0t62472W19z2LOEKI1rWyCTTA', '', '2024-07-04 14:52:08', '2024-07-04 14:52:08'),
+(15, 'user123', '极客学长@191303', '4a4c0a14d5fc8787357517f14f6e442281b42c8ec4395016b77483997476011e', '/images/avatar/user.png', 'cyzwkbrx', 100, 0, 1, '', '[\"gpt\"]', '[11,7,1,10,12,19,18,17,3]', 0, 0, '', '', '', '2024-07-09 10:49:27', '2024-07-09 10:49:27'),
+(17, 'user1234', '极客学长@836764', 'bfe03c9c8c9fff5b77e36e40e8298ad3a6073d43c6a936b008eebb21113bf550', '/images/avatar/user.png', '1d2alwnj', 100, 0, 1, '', '[\"gpt\"]', '[11,7,1,10,12,19,18,17,3]', 0, 0, '', '', '', '2024-07-09 10:53:17', '2024-07-09 10:53:17'),
+(18, 'liaoyq', '极客学长@405564', 'ad1726089022db4c661235a8aab7307af1a7f8483eee08bac3f79b5a6a9bd26b', '/images/avatar/user.png', 'yq862l01', 100, 0, 1, '', '[\"string\"]', '[11,7,1,10,12,19,18,17,3]', 1720574265, 0, '172.22.11.29', '', '', '2024-07-10 09:15:33', '2024-07-10 09:17:45'),
+(19, 'humm', '极客学长@483216', '420970ace96921c8b3ac7668d097182eab1b6436c730a484e82ae4661bd4f7d9', '/images/avatar/user.png', '1gokrcl2', 100, 0, 1, '', '[\"gpt\"]', '[11,7,1,10,12,19,18,17,3]', 1720745411, 0, '172.22.11.36', '', '', '2024-07-10 11:08:31', '2024-07-12 08:50:11'),
+(20, 'abc', '极客学长@369852', '6cad48fb2cc0f54600d66a829e9be69ffd9340a49d5a5b1abda5d4082d946833', '/images/avatar/user.png', 'gop65zei', 100, 0, 1, '', '[\"gpt\"]', '[11,7,1,10,12,19,18,17,3]', 0, 0, '', '', '', '2024-07-11 16:44:14', '2024-07-11 16:44:14'),
+(21, 'husm@pvc123.com', '极客学长@721654', 'e030537dc43fea1bf1fa55a24f99e44f29311bebea96e88ea186995c77db083b', '/images/avatar/user.png', 'p1etg3oi', 100, 0, 1, '', '[\"gpt\"]', '[11,7,1,10,12,19,18,17,3]', 0, 0, '', '', '', '2024-07-11 16:50:33', '2024-07-11 16:50:33'),
+(22, '15818323616', 'ted', '3ca6b2ff585d03be8ca4de33ad00148497a09372914ee8aa4cfde343266cbcdd', 'http://localhost:5678/static/upload/2024/7/1720775331363383.jpg', 'sq4s1brf', 100, 0, 1, '', '[\"gpt\"]', '[11,7,1,10,12,19,18,17,3]', 0, 0, '', '', '', '2024-07-12 15:12:16', '2024-07-12 17:09:01');
 
 -- --------------------------------------------------------
 
@@ -707,8 +717,7 @@ ALTER TABLE `chatgpt_sd_jobs`
 --
 ALTER TABLE `chatgpt_users`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `username` (`username`),
-  ADD UNIQUE KEY `username_2` (`username`);
+  ADD UNIQUE KEY `username` (`username`);
 
 --
 -- 表的索引 `chatgpt_user_login_logs`
@@ -748,7 +757,7 @@ ALTER TABLE `chatgpt_chat_items`
 -- 使用表AUTO_INCREMENT `chatgpt_chat_models`
 --
 ALTER TABLE `chatgpt_chat_models`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- 使用表AUTO_INCREMENT `chatgpt_chat_roles`
@@ -838,7 +847,7 @@ ALTER TABLE `chatgpt_sd_jobs`
 -- 使用表AUTO_INCREMENT `chatgpt_users`
 --
 ALTER TABLE `chatgpt_users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- 使用表AUTO_INCREMENT `chatgpt_user_login_logs`
