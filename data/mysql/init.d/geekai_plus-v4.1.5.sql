@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主机： 127.0.0.1
--- 生成日期： 2024-09-23 14:54:46
+-- 生成日期： 2024-09-30 16:50:55
 -- 服务器版本： 8.0.33
 -- PHP 版本： 8.1.2-1ubuntu2.18
 
@@ -85,17 +85,6 @@ CREATE TABLE `chatgpt_app_types` (
   `created_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='应用分类表';
 
---
--- 转存表中的数据 `chatgpt_app_types`
---
-
-INSERT INTO `chatgpt_app_types` (`id`, `name`, `icon`, `sort_num`, `enabled`, `created_at`) VALUES
-(3, '通用工具', 'http://172.22.11.200:5678/static/upload/2024/9/1726307371871693.png', 1, 1, '2024-09-13 11:13:15'),
-(4, '角色扮演', 'http://172.22.11.200:5678/static/upload/2024/9/1726307263906218.png', 1, 1, '2024-09-14 09:28:17'),
-(5, '学习', 'http://172.22.11.200:5678/static/upload/2024/9/1726307456321179.jpg', 2, 1, '2024-09-14 09:30:18'),
-(6, '编程', 'http://172.22.11.200:5678/static/upload/2024/9/1726307462748787.jpg', 3, 1, '2024-09-14 09:34:06'),
-(7, '测试分类', '', 4, 1, '2024-09-14 17:54:17');
-
 -- --------------------------------------------------------
 
 --
@@ -168,9 +157,9 @@ CREATE TABLE `chatgpt_chat_models` (
 --
 
 INSERT INTO `chatgpt_chat_models` (`id`, `name`, `value`, `sort_num`, `enabled`, `power`, `temperature`, `max_tokens`, `max_context`, `open`, `key_id`, `created_at`, `updated_at`) VALUES
-(1, 'gpt-4o-mini', 'gpt-4o-mini', 1, 1, 1, 1.0, 1024, 16384, 1, 73, '2023-08-23 12:06:36', '2024-09-13 18:00:42'),
+(1, 'gpt-4o-mini', 'gpt-4o-mini', 1, 1, 1, 1.0, 1024, 16384, 1, 66, '2023-08-23 12:06:36', '2024-09-29 19:08:42'),
 (15, 'GPT-超级模型', 'gpt-4-all', 4, 1, 30, 1.0, 4096, 32768, 1, 0, '2024-01-15 11:32:52', '2024-09-13 18:01:08'),
-(36, 'GPT-4O', 'gpt-4o', 3, 1, 15, 1.0, 4096, 16384, 1, 73, '2024-05-14 09:25:15', '2024-09-20 15:38:42'),
+(36, 'GPT-4O', 'gpt-4o', 3, 1, 15, 1.0, 4096, 16384, 1, 66, '2024-05-14 09:25:15', '2024-09-29 19:08:53'),
 (39, 'Claude35-snonet', 'claude-3-5-sonnet-20240620', 5, 1, 2, 1.0, 4000, 200000, 1, 0, '2024-05-29 15:04:19', '2024-09-14 18:07:25'),
 (41, '通义千问', 'qwen-turbo', 7, 1, 2, 1.0, 1024, 8192, 1, 44, '2024-06-06 11:40:46', '2024-08-06 10:51:37'),
 (42, 'DeekSeek', 'deepseek-chat', 8, 1, 1, 1.0, 4096, 32768, 1, 0, '2024-06-27 16:13:01', '2024-08-05 16:05:33'),
@@ -178,7 +167,8 @@ INSERT INTO `chatgpt_chat_models` (`id`, `name`, `value`, `sort_num`, `enabled`,
 (46, 'gpt-3.5-turbo', 'gpt-3.5-turbo', 2, 1, 1, 1.0, 1024, 4096, 1, 73, '2024-07-22 13:53:41', '2024-09-13 18:00:47'),
 (48, '彩票助手', 'gpt-4-gizmo-g-wmSivBgxo', 8, 1, 1, 0.9, 1024, 8192, 1, 57, '2024-09-05 14:17:14', '2024-09-05 14:17:14'),
 (49, 'O1-mini', 'o1-mini', 9, 1, 2, 0.9, 1024, 8192, 1, 57, '2024-09-13 18:07:50', '2024-09-14 11:13:19'),
-(50, 'O1-preview', 'o1-preview', 10, 1, 5, 0.9, 1024, 8192, 1, 57, '2024-09-13 18:11:08', '2024-09-14 11:05:16');
+(50, 'O1-preview', 'o1-preview', 10, 1, 5, 0.9, 1024, 8192, 1, 57, '2024-09-13 18:11:08', '2024-09-14 11:05:16'),
+(51, 'O1-mini-all', 'o1-mini-all', 11, 1, 1, 0.9, 1024, 8192, 1, 57, '2024-09-29 11:40:52', '2024-09-29 11:40:52');
 
 -- --------------------------------------------------------
 
@@ -448,7 +438,7 @@ CREATE TABLE `chatgpt_power_logs` (
   `amount` smallint NOT NULL COMMENT '算力数值',
   `balance` int NOT NULL COMMENT '余额',
   `model` varchar(30) NOT NULL COMMENT '模型',
-  `remark` varchar(255) NOT NULL COMMENT '备注',
+  `remark` varchar(512) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '备注',
   `mark` tinyint(1) NOT NULL COMMENT '资金类型（0：支出，1：收入）',
   `created_at` datetime NOT NULL COMMENT '创建时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='用户算力消费日志';
@@ -481,8 +471,8 @@ CREATE TABLE `chatgpt_products` (
 --
 
 INSERT INTO `chatgpt_products` (`id`, `name`, `price`, `discount`, `days`, `power`, `enabled`, `sales`, `sort_num`, `created_at`, `updated_at`, `app_url`, `url`) VALUES
-(5, '100次点卡', 9.99, 9.88, 0, 100, 1, 15, 0, '2023-08-28 10:55:08', '2024-09-18 16:41:10', NULL, NULL),
-(6, '200次点卡', 19.90, 15.00, 0, 200, 1, 1, 2, '1970-01-01 08:00:00', '2024-08-05 16:05:46', NULL, NULL);
+(5, '100次点卡', 9.99, 9.88, 0, 100, 1, 19, 0, '2023-08-28 10:55:08', '2024-09-18 16:41:10', NULL, NULL),
+(6, '200次点卡', 19.90, 15.00, 0, 200, 1, 2, 2, '1970-01-01 08:00:00', '2024-08-05 16:05:46', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -594,7 +584,7 @@ CREATE TABLE `chatgpt_users` (
 --
 
 INSERT INTO `chatgpt_users` (`id`, `username`, `mobile`, `email`, `nickname`, `password`, `avatar`, `salt`, `power`, `expired_time`, `status`, `chat_config_json`, `chat_roles_json`, `chat_models_json`, `last_login_at`, `vip`, `last_login_ip`, `openid`, `platform`, `created_at`, `updated_at`) VALUES
-(4, '18888888888', '18575670126', '', '极客学长', 'ccc3fb7ab61b8b5d096a4a166ae21d121fc38c71bbd1be6173d9ab973214a63b', 'http://localhost:5678/static/upload/2024/5/1715651569509929.png', 'ueedue5l', 6178, 0, 1, '{\"api_keys\":{\"Azure\":\"\",\"ChatGLM\":\"\",\"OpenAI\":\"\"}}', '[\"gpt\",\"programmer\",\"teacher\"]', '[1]', 1727062461, 1, '::1', 'oCs0t64FaOLfiTbHZpOqk3aUp_94', NULL, '2023-06-12 16:47:17', '2024-09-23 11:34:22'),
+(4, '18888888888', '18575670126', '', '极客学长', 'ccc3fb7ab61b8b5d096a4a166ae21d121fc38c71bbd1be6173d9ab973214a63b', 'http://localhost:5678/static/upload/2024/5/1715651569509929.png', 'ueedue5l', 5823, 0, 1, '{\"api_keys\":{\"Azure\":\"\",\"ChatGLM\":\"\",\"OpenAI\":\"\"}}', '[\"gpt\",\"programmer\",\"teacher\"]', '[1]', 1727683253, 1, '172.22.11.200', 'oCs0t64FaOLfiTbHZpOqk3aUp_94', NULL, '2023-06-12 16:47:17', '2024-09-30 16:00:53'),
 (42, 'yangjian@pvc123.com', '', 'yangjian@pvc123.com', '极客学长@263103', '672992fe8be51df479b9727cf70ca2ae26bc6a6c0c51ff8f836d3a8748387632', '/images/avatar/user.png', 'ahmgvvgc', 99, 0, 1, '', '[\"gpt\"]', '[1]', 1726133100, 0, '::1', '', '', '2024-09-12 15:08:52', '2024-09-12 17:25:00'),
 (43, '18575670125', '18575670125', '', '极客学长@394312', '83a5f04d5fea15419c2a324d5fcc8e1f93f62c2e2f5b883307d591ee92234fcc', '/images/avatar/user.png', 'rfml917k', 100, 0, 1, '', '[\"gpt\"]', '[1]', 1726132554, 0, '::1', '', '', '2024-09-12 15:38:38', '2024-09-12 17:15:55'),
 (44, '13666666666', '13666666666', '', '极客学长@172197', '2c57a40f938d2ee134dffdf0fba6c45907b9bcf1c6decab8f57f034e39b71b26', '/images/avatar/user.png', 'f9wlaiuy', 83, 0, 1, '', '[\"gpt\"]', '[1]', 0, 0, '', '', '', '2024-09-20 11:55:53', '2024-09-20 16:47:31');
@@ -824,7 +814,7 @@ ALTER TABLE `chatgpt_api_keys`
 -- 使用表AUTO_INCREMENT `chatgpt_app_types`
 --
 ALTER TABLE `chatgpt_app_types`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- 使用表AUTO_INCREMENT `chatgpt_chat_history`
@@ -842,7 +832,7 @@ ALTER TABLE `chatgpt_chat_items`
 -- 使用表AUTO_INCREMENT `chatgpt_chat_models`
 --
 ALTER TABLE `chatgpt_chat_models`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- 使用表AUTO_INCREMENT `chatgpt_chat_roles`
