@@ -68,14 +68,6 @@ TikaHost = "http://tika:9998"
     SubDir = ""
     Domain = ""
 
-[XXLConfig]   # xxl-job 配置，需要你部署 XXL-JOB 定时任务工具，用来定期清理未支付订单和清理过期 VIP，如果你没有启用支付服务，则该服务也无需启动
-  Enabled = false  # 是否启用 XXL JOB 服务
-  ServerAddr = "http://geekai-xxl-job-admin:8080/xxl-job-admin"  # xxl-job-admin 管理地址
-  ExecutorIp = "geekai-api"  # 执行器 IP 地址
-  ExecutorPort = "9999" # 执行器服务端口
-  AccessToken = "GeekMaster"  # 执行器 API 通信 token
-  RegistryKey = "chatgpt-plus"  # 任务注册 key，需要与 xxl-job 管理后台配置一致，请不要随意改动
-
 # 支付宝商户支付
 [AlipayConfig]
   Enabled = false # 启用支付宝支付通道
