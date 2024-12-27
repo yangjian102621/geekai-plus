@@ -4,3 +4,4 @@ data/mysql/data
 data/redis/
 data/leveldb 
 logs
+.idea
