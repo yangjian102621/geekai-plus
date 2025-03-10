@@ -37,7 +37,7 @@ services:
       timeout: 10s
       retries: 5
 
-  tika:
+  geekai-tika:
     image: registry.cn-shenzhen.aliyuncs.com/geekmaster/tika:latest
     container_name: geekai-tika
     restart: always
