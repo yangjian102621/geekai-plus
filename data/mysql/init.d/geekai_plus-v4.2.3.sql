@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主机： localhost
--- 生成日期： 2025-05-05 07:00:14
+-- 生成日期： 2025-05-05 08:00:54
 -- 服务器版本： 8.0.33
 -- PHP 版本： 8.3.6
 
@@ -47,7 +47,7 @@ CREATE TABLE `chatgpt_admin_users` (
 --
 
 INSERT INTO `chatgpt_admin_users` (`id`, `username`, `password`, `salt`, `status`, `last_login_at`, `last_login_ip`, `created_at`, `updated_at`) VALUES
-(1, 'admin', '6d17e80c87d209efb84ca4b2e0824f549d09fac8b2e1cc698de5bb5e1d75dfd0', 'mmrql75o', 1, 1746416808, '::1', '2024-03-11 16:30:20', '2025-05-05 11:46:48');
+(1, 'admin', '6d17e80c87d209efb84ca4b2e0824f549d09fac8b2e1cc698de5bb5e1d75dfd0', 'mmrql75o', 1, 1746431827, '::1', '2024-03-11 16:30:20', '2025-05-05 15:57:08');
 
 -- --------------------------------------------------------
 
@@ -615,7 +615,7 @@ CREATE TABLE `chatgpt_users` (
 --
 
 INSERT INTO `chatgpt_users` (`id`, `username`, `mobile`, `email`, `nickname`, `password`, `avatar`, `salt`, `power`, `expired_time`, `status`, `chat_config_json`, `chat_roles_json`, `chat_models_json`, `last_login_at`, `vip`, `last_login_ip`, `openid`, `platform`, `created_at`, `updated_at`, `chat_config`) VALUES
-(4, '18888888888', '18575670126', '', '极客学长', 'ccc3fb7ab61b8b5d096a4a166ae21d121fc38c71bbd1be6173d9ab973214a63b', 'http://localhost:5678/static/upload/2025/4/1745307824044262.png', 'ueedue5l', 12137, 0, 1, '{\"api_keys\":{\"Azure\":\"\",\"ChatGLM\":\"\",\"OpenAI\":\"\"}}', '[\"gpt\",\"programmer\",\"teacher\",\"psychiatrist\",\"lu_xun\",\"english_trainer\",\"translator\",\"red_book\",\"dou_yin\",\"weekly_report\",\"girl_friend\",\"steve_jobs\",\"elon_musk\",\"kong_zi\",\"draw_prompt_expert\",\"draw_prompt\",\"prompt_engineer\"]', '[1]', 1746417142, 1, '::1', '', NULL, '2023-06-12 16:47:17', '2025-05-05 11:52:22', ''),
+(4, '18888888888', '18575670126', '', '极客学长', 'ccc3fb7ab61b8b5d096a4a166ae21d121fc38c71bbd1be6173d9ab973214a63b', '/images/avatar/user.png', 'ueedue5l', 12137, 0, 1, '{\"api_keys\":{\"Azure\":\"\",\"ChatGLM\":\"\",\"OpenAI\":\"\"}}', '[\"gpt\",\"programmer\",\"teacher\",\"psychiatrist\",\"lu_xun\",\"english_trainer\",\"translator\",\"red_book\",\"dou_yin\",\"weekly_report\",\"girl_friend\",\"steve_jobs\",\"elon_musk\",\"kong_zi\",\"draw_prompt_expert\",\"draw_prompt\",\"prompt_engineer\"]', '[1]', 1746417142, 1, '::1', '', NULL, '2023-06-12 16:47:17', '2025-05-05 11:52:22', ''),
 (48, 'wx@3659838859', '', '', '极客学长', 'cf6bbe381b23812d2b9fd423abe74003cecdd3b93809896eb573536ba6c500b3', 'https://thirdwx.qlogo.cn/mmopen/vi_32/uyxRMqZcEkb7fHouKXbNzxrnrvAttBKkwNlZ7yFibibRGiahdmsrZ3A1NKf8Fw5qJNJn4TXRmygersgEbibaSGd9Sg/132', '5rsy4iwg', 98, 0, 1, '', '[\"gpt\",\"teacher\"]', '', 1736228927, 0, '172.22.11.200', 'oCs0t62472W19z2LOEKI1rWyCTTA', '', '2025-01-07 13:43:06', '2025-01-07 13:48:48', ''),
 (49, 'wx@9502480897', '', '', 'AI探索君', 'd99fa8ba7da1455693b40e11d894a067416e758af2a75d7a3df4721b76cdbc8c', 'https://thirdwx.qlogo.cn/mmopen/vi_32/Zpcln1FZjcKxqtIyCsOTLGn16s7uIvwWfdkdsW6gbZg4r9sibMbic4jvrHmV7ux9nseTB5kBSnu1HSXr7zB8rTXg/132', 'fjclgsli', 99, 0, 1, '', '[\"gpt\"]', '', 0, 0, '', 'oCs0t64FaOLfiTbHZpOqk3aUp_94', '', '2025-01-07 14:05:31', '2025-01-07 14:05:31', '');
 
