@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主机： localhost
--- 生成日期： 2025-05-29 06:01:14
+-- 生成日期： 2025-07-25 06:07:27
 -- 服务器版本： 8.0.33
 -- PHP 版本： 8.3.6
 
@@ -47,7 +47,7 @@ CREATE TABLE `chatgpt_admin_users` (
 --
 
 INSERT INTO `chatgpt_admin_users` (`id`, `username`, `password`, `salt`, `status`, `last_login_at`, `last_login_ip`, `created_at`, `updated_at`) VALUES
-(1, 'admin', '6d17e80c87d209efb84ca4b2e0824f549d09fac8b2e1cc698de5bb5e1d75dfd0', 'mmrql75o', 1, 1748489281, '127.0.0.1', '2024-03-11 16:30:20', '2025-05-29 11:28:01');
+(1, 'admin', '6d17e80c87d209efb84ca4b2e0824f549d09fac8b2e1cc698de5bb5e1d75dfd0', 'mmrql75o', 1, 1753408964, '127.0.0.1', '2024-03-11 16:30:20', '2025-07-25 10:02:45');
 
 -- --------------------------------------------------------
 
@@ -170,27 +170,16 @@ CREATE TABLE `chatgpt_chat_models` (
 --
 
 INSERT INTO `chatgpt_chat_models` (`id`, `type`, `name`, `value`, `sort_num`, `enabled`, `power`, `temperature`, `max_tokens`, `max_context`, `open`, `key_id`, `options`, `created_at`, `updated_at`, `desc`, `tag`) VALUES
-(1, 'chat', 'gpt-4o-mini', 'gpt-4o-mini', 1, 1, 1, 1.0, 1024, 16384, 1, 1, 'null', '2023-08-23 12:06:36', '2025-05-25 11:46:01', 'ccccc', 'ccccc'),
-(15, 'chat', 'GPT-4O(联网版本)', 'gpt-4o-all', 4, 1, 30, 1.0, 4096, 32768, 1, 57, '', '2024-01-15 11:32:52', '2025-01-06 14:01:08', '', ''),
-(36, 'chat', 'GPT-4O', 'gpt-4o', 3, 1, 15, 1.0, 4096, 16384, 1, 0, 'null', '2024-05-14 09:25:15', '2025-04-02 20:22:15', '', ''),
-(39, 'chat', 'Claude35-snonet', 'claude-3-5-sonnet-20240620', 5, 1, 2, 1.0, 4000, 200000, 1, 0, '', '2024-05-29 15:04:19', '2025-01-06 14:01:08', '', ''),
-(41, 'chat', 'Suno对话模型', 'suno-v3.5', 7, 1, 10, 1.0, 1024, 8192, 1, 57, '', '2024-06-06 11:40:46', '2025-01-06 14:01:08', '', ''),
-(42, 'chat', 'DeekSeek', 'deepseek-reasoner', 8, 1, 1, 1.0, 4096, 32768, 1, 10, 'null', '2024-06-27 16:13:01', '2025-05-05 17:11:10', '', ''),
-(44, 'chat', 'Claude3-opus', 'claude-3-opus-20240229', 6, 1, 5, 1.0, 4000, 128000, 1, 44, '', '2024-07-22 11:24:30', '2025-01-06 14:01:08', '', ''),
-(46, 'chat', 'GPT-4O-绘图', 'gpt-4o-image', 2, 1, 1, 1.0, 2048, 32000, 1, 6, '', '2024-07-22 13:53:41', '2025-03-29 13:02:14', '', ''),
-(48, 'chat', '彩票助手', 'gpt-4-gizmo-g-wmSivBgxo', 9, 1, 1, 0.9, 1024, 8192, 1, 57, '', '2024-09-05 14:17:14', '2025-01-06 14:01:08', '', ''),
-(49, 'chat', 'O1-mini', 'o1-mini', 10, 1, 2, 0.9, 1024, 8192, 1, 44, '', '2024-09-13 18:07:50', '2025-01-06 14:01:08', '', ''),
-(50, 'chat', 'O1-preview', 'o1-preview', 11, 1, 5, 0.9, 1024, 8192, 1, 44, '', '2024-09-13 18:11:08', '2025-01-06 14:01:08', '', ''),
-(51, 'chat', 'O1-mini-all', 'o1-mini-all', 12, 1, 1, 0.9, 1024, 8192, 1, 57, '', '2024-09-29 11:40:52', '2025-01-06 14:01:08', '', ''),
-(52, 'chat', '通义千问', 'qwen-plus', 14, 1, 1, 0.9, 1024, 8192, 1, 80, '', '2024-11-19 08:38:14', '2025-01-06 14:01:08', '', ''),
-(53, 'chat', 'OpenAI 高级语音', 'advanced-voice', 15, 1, 10, 0.9, 1024, 8192, 1, 44, '', '2024-12-20 10:34:45', '2025-01-06 14:01:08', '', ''),
-(54, 'chat', 'Qwen2.5-14B-Instruct', 'Qwen2.5-14B-Instruct', 16, 1, 1, 0.9, 1024, 8192, 1, 81, '', '2024-12-25 14:53:17', '2025-01-06 14:01:08', '', ''),
-(55, 'chat', 'Qwen2.5-7B-Instruct', 'Qwen2.5-7B-Instruct', 17, 1, 1, 0.9, 1024, 8192, 1, 81, '', '2024-12-25 15:15:49', '2025-01-06 14:01:08', '', ''),
-(56, 'img', 'flux-1-schnell', 'flux-1-schnell', 18, 1, 1, 0.9, 1024, 8192, 1, 3, '', '2024-12-25 15:30:27', '2025-02-23 12:02:40', '', ''),
-(57, 'img', 'dall-e-3', 'dall-e-3', 19, 1, 1, 0.9, 1024, 8192, 1, 9, 'null', '2024-12-25 16:54:06', '2025-04-22 15:41:16', '', ''),
-(58, 'img', 'SD-3-medium', 'stable-diffusion-3-medium', 20, 1, 1, 0.9, 1024, 8192, 1, 3, 'null', '2024-12-27 10:03:28', '2025-04-02 20:20:36', '', ''),
-(59, 'chat', 'O1-preview-all', 'O1-preview-all', 13, 1, 10, 0.9, 1024, 32000, 1, 57, '', '2025-01-06 14:01:04', '2025-01-06 14:01:08', '', ''),
-(60, 'tts', 'tts', 'tts-1', 0, 1, 1, 0.9, 1024, 8192, 1, 8, '{\"voice\":\"echo\"}', '2025-04-17 11:58:30', '2025-05-08 09:03:39', '', 'qqqq');
+(1, 'chat', 'gpt-4o-mini', 'gpt-4o-mini', 1, 1, 1, 1.0, 1024, 16384, 1, 0, '{}', '2023-08-23 12:06:36', '2025-07-25 10:16:00', '轻量级多模态 AI 模型，旨在提供高效、低成本的人工智能服务，特别适用于需要处理文本和图像输入的任务， 适用于图像描述、图像问答、智能客服、内容生成、开发者进行模型测试和原型开发等场景，最大上下文数量128,000个token', 'openai'),
+(15, 'chat', 'GPT-4O(联网版本)', 'gpt-4o-all', 4, 1, 10, 1.0, 4096, 32768, 1, 0, '{}', '2024-01-15 11:32:52', '2025-07-25 10:20:22', 'GPT All模型, 集合官方GPT-4、联网、读图、绘图功能、code interpreter一体，文件链接可放 prompt 任意位置', 'openai'),
+(36, 'chat', 'chatgpt-4o-latest', 'chatgpt-4o-latest', 3, 1, 10, 1.0, 4096, 16384, 1, 0, '{}', '2024-05-14 09:25:15', '2025-07-25 10:14:27', '支持文本、图像、音频和视频的输入输出，在英语和代码处理方面与 GPT-4 Turbo 相当，在非英语语言、视觉和音频理解方面表现更佳，最大上下文长度为 128,000 个 token。', 'openai'),
+(39, 'chat', 'claude-sonnet-4', 'claude-sonnet-4-20250514', 5, 1, 3, 1.0, 4000, 200000, 1, 0, '{}', '2024-05-29 15:04:19', '2025-07-25 10:19:07', 'Claude Sonnet 4 在 Claude Sonnet 3.7 的基础上，在多个领域进行了改进，尤其是在编码方面。它提供了适用于大多数 AI 用例的前沿性能，包括面向用户的 AI 助手和高容量任务。', 'claude'),
+(42, 'chat', 'DeekSeek', 'deepseek-reasoner', 8, 1, 1, 1.0, 4096, 32768, 1, 0, '{}', '2024-06-27 16:13:01', '2025-07-25 10:10:11', 'DeepSeek 推理模型', 'deepseek'),
+(46, 'chat', 'GPT-4O-绘图', 'gpt-4o-image', 2, 1, 1, 5.0, 2048, 32000, 1, 0, '{}', '2024-07-22 13:53:41', '2025-07-25 10:19:58', 'ChatGPT 页面上的 4o 绘图；支持文生图、图片修改、风格转换； 适配 Chat、Dall-e、Edits 接口', 'openai'),
+(56, 'img', 'flux-dev', 'flux-dev', 18, 1, 3, 0.9, 1024, 8192, 1, 0, '{}', '2024-12-25 15:30:27', '2025-07-25 10:08:28', '', 'flux'),
+(57, 'img', 'dall-e-3', 'dall-e-3', 19, 1, 10, 0.9, 1024, 8192, 1, 0, '{}', '2024-12-25 16:54:06', '2025-07-25 10:10:43', '', 'openai'),
+(58, 'img', 'flux-pro', '5', 20, 1, 10, 0.9, 1024, 8192, 1, 0, '{}', '2024-12-27 10:03:28', '2025-07-25 10:10:49', '', 'flux'),
+(60, 'tts', 'tts', 'tts-1', 0, 1, 1, 0.9, 1024, 8192, 1, 0, '{\"voice\":\"echo\"}', '2025-04-17 11:58:30', '2025-07-25 10:06:32', '', '语音模型');
 
 -- --------------------------------------------------------
 
@@ -248,17 +237,20 @@ INSERT INTO `chatgpt_chat_roles` (`id`, `name`, `tid`, `marker`, `context_json`,
 DROP TABLE IF EXISTS `chatgpt_configs`;
 CREATE TABLE `chatgpt_configs` (
   `id` int NOT NULL,
-  `marker` varchar(20) NOT NULL COMMENT '标识',
-  `config_json` text NOT NULL
+  `name` varchar(20) NOT NULL COMMENT '配置名称',
+  `value` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- 转存表中的数据 `chatgpt_configs`
 --
 
-INSERT INTO `chatgpt_configs` (`id`, `marker`, `config_json`) VALUES
-(1, 'system', '{\"title\":\"GeekAI 创作助手\",\"slogan\":\"我辈之人，先干为敬，让每一个人都能用好AI\",\"admin_title\":\"GeekAI 控制台\",\"logo\":\"/images/logo.png\",\"bar_logo\":\"/images/bar_logo.png\",\"init_power\":100,\"daily_power\":1,\"invite_power\":200,\"vip_month_power\":1000,\"register_ways\":[\"username\",\"email\",\"mobile\"],\"enabled_register\":true,\"order_pay_timeout\":600,\"vip_info_text\":\"月度会员，年度会员每月赠送 1000 点算力，赠送算力当月有效当月没有消费完的算力不结余到下个月。 点卡充值的算力长期有效。\",\"mj_power\":20,\"mj_action_power\":5,\"sd_power\":5,\"dall_power\":10,\"suno_power\":10,\"luma_power\":120,\"keling_powers\":{\"kling-v1-5_pro_10\":840,\"kling-v1-5_pro_5\":420,\"kling-v1-5_std_10\":480,\"kling-v1-5_std_5\":240,\"kling-v1-6_pro_10\":840,\"kling-v1-6_pro_5\":420,\"kling-v1-6_std_10\":480,\"kling-v1-6_std_5\":240,\"kling-v1_pro_10\":840,\"kling-v1_pro_5\":420,\"kling-v1_std_10\":240,\"kling-v1_std_5\":120},\"advance_voice_power\":100,\"prompt_power\":1,\"wechat_card_url\":\"/images/wx.png\",\"enable_context\":true,\"context_deep\":10,\"sd_neg_prompt\":\"nsfw, paintings,low quality,easynegative,ng_deepnegative ,lowres,bad anatomy,bad hands,bad feet\",\"mj_mode\":\"fast\",\"index_navs\":[1,5,13,19,9,12,6,20,8,10],\"copyright\":\"极客学长\",\"icp\":\"粤ICP备19122051号\",\"mark_map_text\":\"# GeekAI 演示站\\n\\n- 完整的开源系统，前端应用和后台管理系统皆可开箱即用。\\n- 基于 Websocket 实现，完美的打字机体验。\\n- 内置了各种预训练好的角色应用,轻松满足你的各种聊天和应用需求。\\n- 支持 OPenAI，Azure，文心一言，讯飞星火，清华 ChatGLM等多个大语言模型。\\n- 支持 MidJourney / Stable Diffusion AI 绘画集成，开箱即用。\\n- 支持使用个人微信二维码作为充值收费的支付渠道，无需企业支付通道。\\n- 已集成支付宝支付功能，微信支付，支持多种会员套餐和点卡购买功能。\\n- 集成插件 API 功能，可结合大语言模型的 function 功能开发各种强大的插件。\",\"enabled_verify\":false,\"email_white_list\":[\"qq.com\",\"163.com\",\"gmail.com\",\"hotmail.com\",\"126.com\",\"outlook.com\",\"foxmail.com\",\"yahoo.com\"],\"translate_model_id\":36,\"max_file_size\":10}'),
-(3, 'notice', '{\"sd_neg_prompt\":\"\",\"mj_mode\":\"\",\"index_navs\":null,\"copyright\":\"\",\"icp\":\"\",\"mark_map_text\":\"\",\"enabled_verify\":false,\"email_white_list\":null,\"translate_model_id\":0,\"max_file_size\":0,\"content\":\"## v4.2.3 更新日志\\n- 功能优化：增加模型分组与模型描述，采用卡片展示模式改进模型选择功能体验\\n- 功能优化：化思维导图下载图片的清晰度以及解决拖动、缩放操作后下载图片内容不全问题\\n- Bug 修复：修复 MJ 画图页面已画出的图，点复制指令无效问题\\n- 功能优化：MJ 画图的分辨率支持自定义，优先使用 prompt 中--ar 参数\\n- Bug 修复：修复 MJ 绘画 U1-V1,拼写错误\\n- 功能优化：支持自动迁移数据表结构，无需在手动执行 SQL 了\\n- 功能优化：移除首页的文字动画效果\\n- 功能优化：在聊天页面增加对话列表展开和隐藏功能\\n\\n注意：当前站点仅为开源项目 \\u003ca style=\\\"color: #F56C6C\\\" href=\\\"https://github.com/yangjian102621/geekai\\\" target=\\\"_blank\\\"\\u003eGeekAI-Plus\\u003c/a\\u003e 的演示项目，本项目单纯就是给大家体验项目功能使用。\\n\\u003cstrong style=\\\"color: #F56C6C\\\"\\u003e体验额度用完之后请不要在当前站点进行任何充值操作！！！\\u003c/strong\\u003e\\n\\u003cstrong style=\\\"color: #F56C6C\\\"\\u003e体验额度用完之后请不要在当前站点进行任何充值操作！！！\\u003c/strong\\u003e\\n\\u003cstrong style=\\\"color: #F56C6C\\\"\\u003e体验额度用完之后请不要在当前站点进行任何充值操作！！！\\u003c/strong\\u003e\\n 如果觉得好用你就花几分钟自己部署一套，没有API KEY 的同学可以去下面几个推荐的中转站购买：\\n1、\\u003ca href=\\\"https://api.geekai.pro\\\" target=\\\"_blank\\\"\\n   style=\\\"font-size: 20px;color:#F56C6C\\\"\\u003ehttps://api.geekai.pro\\u003c/a\\u003e\\n2、\\u003ca href=\\\"https://api.geekai.me\\\" target=\\\"_blank\\\"\\n   style=\\\"font-size: 20px;color:#F56C6C\\\"\\u003ehttps://api.geekai.me\\u003c/a\\u003e\\n支持MidJourney，GPT，Claude，Google Gemmi，以及国内各个厂家的大模型，现在有超级优惠，价格远低于 OpenAI 官方。关于中转 API 的优势和劣势请参考 [中转API技术原理](https://docs.geekai.me/config/chat/#%E4%B8%AD%E8%BD%ACapi%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86)。GPT-3.5，GPT-4，DALL-E3 绘图......你都可以随意使用，无需魔法。\\n接入教程： \\u003ca href=\\\"https://docs.geekai.me\\\" target=\\\"_blank\\\"\\n             style=\\\"font-size: 20px;color:#F56C6C\\\"\\u003ehttps://docs.geekai.me\\u003c/a\\u003e\\n本项目源码地址：\\u003ca href=\\\"https://github.com/yangjian102621/geekai\\\" target=\\\"_blank\\\"\\u003ehttps://github.com/yangjian102621/geekai\\u003c/a\\u003e\",\"updated\":true}');
+INSERT INTO `chatgpt_configs` (`id`, `name`, `value`) VALUES
+(1, 'system', '{\"title\":\"GeekAI 创作助手\",\"slogan\":\"我辈之人，先干为敬，让每一个人都能用好AI\",\"admin_title\":\"GeekAI 控制台\",\"logo\":\"/images/logo.png\",\"bar_logo\":\"/images/bar_logo.png\",\"init_power\":100,\"daily_power\":1,\"invite_power\":200,\"vip_month_power\":1000,\"register_ways\":[\"username\",\"email\",\"mobile\"],\"enabled_register\":true,\"order_pay_timeout\":600,\"vip_info_text\":\"月度会员，年度会员每月赠送 1000 点算力，赠送算力当月有效当月没有消费完的算力不结余到下个月。 点卡充值的算力长期有效。\",\"mj_power\":20,\"mj_action_power\":5,\"sd_power\":5,\"dall_power\":10,\"suno_power\":10,\"luma_power\":120,\"keling_powers\":{\"kling-v1-5_pro_10\":840,\"kling-v1-5_pro_5\":420,\"kling-v1-5_std_10\":480,\"kling-v1-5_std_5\":240,\"kling-v1-6_pro_10\":840,\"kling-v1-6_pro_5\":420,\"kling-v1-6_std_10\":480,\"kling-v1-6_std_5\":240,\"kling-v1_pro_10\":840,\"kling-v1_pro_5\":420,\"kling-v1_std_10\":240,\"kling-v1_std_5\":120},\"advance_voice_power\":100,\"prompt_power\":1,\"wechat_card_url\":\"/images/wx.png\",\"enable_context\":true,\"context_deep\":10,\"sd_neg_prompt\":\"nsfw, paintings,low quality,easynegative,ng_deepnegative ,lowres,bad anatomy,bad hands,bad feet\",\"mj_mode\":\"fast\",\"index_navs\":[1,5,13,19,9,6,20,8,10,22],\"copyright\":\"极客学长\",\"default_nickname\":\"\",\"icp\":\"粤ICP备19122051号\",\"mark_map_text\":\"# GeekAI 演示站\\n\\n- 完整的开源系统，前端应用和后台管理系统皆可开箱即用。\\n- 基于 Websocket 实现，完美的打字机体验。\\n- 内置了各种预训练好的角色应用,轻松满足你的各种聊天和应用需求。\\n- 支持 OPenAI，Azure，文心一言，讯飞星火，清华 ChatGLM等多个大语言模型。\\n- 支持 MidJourney / Stable Diffusion AI 绘画集成，开箱即用。\\n- 支持使用个人微信二维码作为充值收费的支付渠道，无需企业支付通道。\\n- 已集成支付宝支付功能，微信支付，支持多种会员套餐和点卡购买功能。\\n- 集成插件 API 功能，可结合大语言模型的 function 功能开发各种强大的插件。\",\"enabled_verify\":false,\"email_white_list\":[\"qq.com\",\"163.com\",\"gmail.com\",\"hotmail.com\",\"126.com\",\"outlook.com\",\"foxmail.com\",\"yahoo.com\"],\"assistant_model_id\":36,\"max_file_size\":10}'),
+(3, 'notice', '{\"sd_neg_prompt\":\"\",\"mj_mode\":\"\",\"index_navs\":null,\"copyright\":\"\",\"default_nickname\":\"\",\"icp\":\"\",\"mark_map_text\":\"\",\"enabled_verify\":false,\"email_white_list\":null,\"assistant_model_id\":0,\"max_file_size\":0,\"content\":\"## v4.2.5 更新日志\\n- 功能优化：在代码右下角增加复制代码功能按钮，增加收起和展开代码功能\\n- Bug 修复：修复 Shift + Enter 不换行的 Bug\\n- Bug 修复：修复管理后台菜单添加页面的文本错误\\n- Bug 修复：解决聊天页面异常退出不断重连的 bug\\n- 功能优化：把 Luma 和可灵视频生成页面整合成一个视频创作中心页面，统一管理视频任务\\n- 功能新增：增加即梦 AI 专题页面，支持即梦官方原生 API 的图片和视频生成 🎉🎉🎉\\n\\n注意：当前站点仅为开源项目 \\u003ca style=\\\"color: #F56C6C\\\" href=\\\"https://github.com/yangjian102621/geekai\\\" target=\\\"_blank\\\"\\u003eGeekAI-Plus\\u003c/a\\u003e 的演示项目，本项目单纯就是给大家体验项目功能使用。\\n\\u003cstrong style=\\\"color: #F56C6C\\\"\\u003e体验额度用完之后请不要在当前站点进行任何充值操作！！！\\u003c/strong\\u003e\\n\\u003cstrong style=\\\"color: #F56C6C\\\"\\u003e体验额度用完之后请不要在当前站点进行任何充值操作！！！\\u003c/strong\\u003e\\n\\u003cstrong style=\\\"color: #F56C6C\\\"\\u003e体验额度用完之后请不要在当前站点进行任何充值操作！！！\\u003c/strong\\u003e\\n 如果觉得好用你就花几分钟自己部署一套，没有API KEY 的同学可以去 \\u003ca href=\\\"https://api.geekai.pro\\\" target=\\\"_blank\\\"\\n   style=\\\"font-size: 20px;color:#F56C6C\\\"\\u003ehttps://api.geekai.pro\\u003c/a\\u003e 购买。\\n支持MidJourney，GPT，Claude，Google Gemmi，以及国内各个厂家的大模型，现在有超级优惠，价格远低于 OpenAI 官方。关于中转 API 的优势和劣势请参考 [中转API技术原理](https://docs.geekai.me/config/chat/#%E4%B8%AD%E8%BD%ACapi%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86)。GPT-3.5，GPT-4，DALL-E3 绘图......你都可以随意使用，无需魔法。\\n接入教程： \\u003ca href=\\\"https://docs.geekai.me\\\" target=\\\"_blank\\\"\\n             style=\\\"font-size: 20px;color:#F56C6C\\\"\\u003ehttps://docs.geekai.me\\u003c/a\\u003e\\n本项目源码地址：\\u003ca href=\\\"https://github.com/yangjian102621/geekai\\\" target=\\\"_blank\\\"\\u003ehttps://github.com/yangjian102621/geekai\\u003c/a\\u003e\",\"updated\":true}'),
+(4, 'agreement', '{\"sd_neg_prompt\":\"\",\"mj_mode\":\"\",\"index_navs\":null,\"copyright\":\"\",\"default_nickname\":\"\",\"icp\":\"\",\"mark_map_text\":\"\",\"enabled_verify\":false,\"email_white_list\":null,\"translate_model_id\":0,\"max_file_size\":0,\"content\":\"GeekAI 用户协议\",\"updated\":true}'),
+(5, 'privacy', '{\"sd_neg_prompt\":\"\",\"mj_mode\":\"\",\"index_navs\":null,\"copyright\":\"\",\"default_nickname\":\"\",\"icp\":\"\",\"mark_map_text\":\"\",\"enabled_verify\":false,\"email_white_list\":null,\"translate_model_id\":0,\"max_file_size\":0,\"content\":\"GeekAI 隐私说明\",\"updated\":true}'),
+(6, 'jimeng', '{\"access_key\":\"\",\"secret_key\":\"\",\"power\":{\"text_to_image\":100,\"image_to_image\":100,\"image_edit\":100,\"image_effects\":100,\"text_to_video\":400,\"image_to_video\":350}}');
 
 -- --------------------------------------------------------
 
@@ -362,6 +354,32 @@ CREATE TABLE `chatgpt_invite_logs` (
 -- --------------------------------------------------------
 
 --
+-- 表的结构 `chatgpt_jimeng_jobs`
+--
+
+DROP TABLE IF EXISTS `chatgpt_jimeng_jobs`;
+CREATE TABLE `chatgpt_jimeng_jobs` (
+  `id` bigint UNSIGNED NOT NULL,
+  `user_id` bigint NOT NULL COMMENT '用户ID',
+  `task_id` varchar(100) NOT NULL COMMENT '任务ID',
+  `type` varchar(50) NOT NULL COMMENT '任务类型',
+  `req_key` varchar(100) DEFAULT NULL COMMENT '请求Key',
+  `prompt` text COMMENT '提示词',
+  `task_params` text COMMENT '任务参数JSON',
+  `img_url` varchar(1024) DEFAULT NULL COMMENT '图片或封面URL',
+  `video_url` varchar(1024) DEFAULT NULL COMMENT '视频URL',
+  `raw_data` text COMMENT '原始API响应',
+  `progress` bigint DEFAULT '0' COMMENT '进度百分比',
+  `status` varchar(20) DEFAULT 'pending' COMMENT '任务状态',
+  `err_msg` varchar(1024) DEFAULT NULL COMMENT '错误信息',
+  `power` int DEFAULT '0' COMMENT '消耗算力',
+  `created_at` datetime NOT NULL COMMENT '创建时间',
+  `updated_at` datetime NOT NULL COMMENT '更新时间'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
 -- 表的结构 `chatgpt_menus`
 --
 
@@ -386,14 +404,14 @@ INSERT INTO `chatgpt_menus` (`id`, `name`, `icon`, `url`, `sort_num`, `enabled`)
 (7, '算力日志', 'icon-file', '/powerLog', 11, 1),
 (8, '应用中心', 'icon-app', '/apps', 10, 1),
 (9, '画廊', 'icon-image', '/images-wall', 5, 1),
-(10, '会员计划', 'icon-vip2', '/member', 12, 0),
+(10, '会员计划', 'icon-vip2', '/member', 12, 1),
 (11, '分享计划', 'icon-share1', '/invite', 13, 1),
 (12, '思维导图', 'icon-xmind', '/xmind', 9, 1),
 (13, 'DALLE', 'icon-dalle', '/dalle', 4, 1),
 (14, '项目文档', 'icon-book', 'https://docs.geekai.me', 14, 1),
 (19, 'Suno', 'icon-suno', '/suno', 6, 1),
-(20, 'Luma', 'icon-luma', '/luma', 7, 1),
-(21, '可灵视频', 'icon-keling', '/keling', 8, 1);
+(20, '视频', 'icon-video', '/video', 8, 1),
+(22, '即梦AI', 'icon-jimeng2', '/jimeng', 7, 1);
 
 -- --------------------------------------------------------
 
@@ -611,11 +629,8 @@ CREATE TABLE `chatgpt_users` (
 --
 
 INSERT INTO `chatgpt_users` (`id`, `username`, `mobile`, `email`, `nickname`, `password`, `avatar`, `salt`, `power`, `expired_time`, `status`, `chat_config_json`, `chat_roles_json`, `chat_models_json`, `last_login_at`, `vip`, `last_login_ip`, `openid`, `platform`, `created_at`, `updated_at`) VALUES
-(4, '18888888888', '18575670126', '', '极客学长', 'ccc3fb7ab61b8b5d096a4a166ae21d121fc38c71bbd1be6173d9ab973214a63b', '/images/avatar/user.png', 'ueedue5l', 12058, 0, 1, '{\"api_keys\":{\"Azure\":\"\",\"ChatGLM\":\"\",\"OpenAI\":\"\"}}', '[\"gpt\",\"programmer\",\"teacher\",\"psychiatrist\",\"lu_xun\",\"english_trainer\",\"translator\",\"red_book\",\"dou_yin\",\"weekly_report\",\"girl_friend\",\"steve_jobs\",\"elon_musk\",\"kong_zi\",\"draw_prompt_expert\",\"draw_prompt\",\"prompt_engineer\"]', '[1]', 1748488909, 1, '127.0.0.1', '', NULL, '2023-06-12 16:47:17', '2025-05-29 11:21:49'),
-(48, 'wx@3659838859', '', '', '极客学长', 'cf6bbe381b23812d2b9fd423abe74003cecdd3b93809896eb573536ba6c500b3', 'https://thirdwx.qlogo.cn/mmopen/vi_32/uyxRMqZcEkb7fHouKXbNzxrnrvAttBKkwNlZ7yFibibRGiahdmsrZ3A1NKf8Fw5qJNJn4TXRmygersgEbibaSGd9Sg/132', '5rsy4iwg', 98, 0, 1, '', '[\"gpt\",\"teacher\"]', '', 1736228927, 0, '172.22.11.200', 'oCs0t62472W19z2LOEKI1rWyCTTA', '', '2025-01-07 13:43:06', '2025-01-07 13:48:48'),
-(49, 'wx@9502480897', '', '', 'AI探索君', 'd99fa8ba7da1455693b40e11d894a067416e758af2a75d7a3df4721b76cdbc8c', 'https://thirdwx.qlogo.cn/mmopen/vi_32/Zpcln1FZjcKxqtIyCsOTLGn16s7uIvwWfdkdsW6gbZg4r9sibMbic4jvrHmV7ux9nseTB5kBSnu1HSXr7zB8rTXg/132', 'fjclgsli', 99, 0, 1, '', '[\"gpt\"]', '', 0, 0, '', 'oCs0t64FaOLfiTbHZpOqk3aUp_94', '', '2025-01-07 14:05:31', '2025-01-07 14:05:31'),
-(50, 'aaaaaaaa', '', '', '极客学长@342383', '72777f2488e60eba1aa946db5cb1211c7edb7705cbc808e69f6da8388551e148', '/images/avatar/user.png', '2u4diibd', 100, 0, 1, '{}', '[\"gpt\"]', '{}', 0, 0, '', '', '', '2025-05-06 17:48:56', '2025-05-06 17:48:56'),
-(51, 'ccccccc', '', '', '极客学长@144069', '19397f1490908a528a2e914a29da2d086bd6c1287ec0fe85539f878585140201', '/images/avatar/user.png', '9g98h9p1', 80, 0, 1, '{}', '[\"gpt\"]', '{}', 0, 0, '', '', '', '2025-05-06 18:40:44', '2025-05-06 18:40:44');
+(4, '18888888888', '18575670126', '', '极客学长', 'ccc3fb7ab61b8b5d096a4a166ae21d121fc38c71bbd1be6173d9ab973214a63b', '/images/avatar/user.png', 'ueedue5l', 10070, 0, 1, '{\"api_keys\":{\"Azure\":\"\",\"ChatGLM\":\"\",\"OpenAI\":\"\"}}', '[\"gpt\",\"programmer\",\"teacher\",\"psychiatrist\",\"lu_xun\",\"english_trainer\",\"translator\",\"red_book\",\"dou_yin\",\"weekly_report\",\"girl_friend\",\"steve_jobs\",\"elon_musk\",\"kong_zi\",\"draw_prompt_expert\",\"draw_prompt\",\"prompt_engineer\"]', '[1]', 1753414608, 1, '127.0.0.1', '', NULL, '2023-06-12 16:47:17', '2025-07-25 11:36:49'),
+(49, 'wx@9502480897', '', '', 'AI探索君', 'd99fa8ba7da1455693b40e11d894a067416e758af2a75d7a3df4721b76cdbc8c', 'https://thirdwx.qlogo.cn/mmopen/vi_32/Zpcln1FZjcKxqtIyCsOTLGn16s7uIvwWfdkdsW6gbZg4r9sibMbic4jvrHmV7ux9nseTB5kBSnu1HSXr7zB8rTXg/132', 'fjclgsli', 99, 0, 1, '', '[\"gpt\"]', '', 0, 0, '', 'oCs0t64FaOLfiTbHZpOqk3aUp_94', '', '2025-01-07 14:05:31', '2025-01-07 14:05:31');
 
 -- --------------------------------------------------------
 
@@ -721,8 +736,8 @@ ALTER TABLE `chatgpt_chat_roles`
 --
 ALTER TABLE `chatgpt_configs`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `marker` (`marker`),
-  ADD UNIQUE KEY `idx_chatgpt_configs_key` (`marker`);
+  ADD UNIQUE KEY `name` (`name`),
+  ADD UNIQUE KEY `idx_chatgpt_configs_name` (`name`);
 
 --
 -- 表的索引 `chatgpt_dall_jobs`
@@ -757,6 +772,14 @@ ALTER TABLE `chatgpt_invite_codes`
 --
 ALTER TABLE `chatgpt_invite_logs`
   ADD PRIMARY KEY (`id`);
+
+--
+-- 表的索引 `chatgpt_jimeng_jobs`
+--
+ALTER TABLE `chatgpt_jimeng_jobs`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idx_chatgpt_jimeng_jobs_user_id` (`user_id`),
+  ADD KEY `idx_chatgpt_jimeng_jobs_task_id` (`task_id`);
 
 --
 -- 表的索引 `chatgpt_menus`
@@ -886,7 +909,7 @@ ALTER TABLE `chatgpt_chat_roles`
 -- 使用表AUTO_INCREMENT `chatgpt_configs`
 --
 ALTER TABLE `chatgpt_configs`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- 使用表AUTO_INCREMENT `chatgpt_dall_jobs`
@@ -919,10 +942,16 @@ ALTER TABLE `chatgpt_invite_logs`
   MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
+-- 使用表AUTO_INCREMENT `chatgpt_jimeng_jobs`
+--
+ALTER TABLE `chatgpt_jimeng_jobs`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- 使用表AUTO_INCREMENT `chatgpt_menus`
 --
 ALTER TABLE `chatgpt_menus`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- 使用表AUTO_INCREMENT `chatgpt_mj_jobs`
