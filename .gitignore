@@ -3,5 +3,6 @@ install.tar.gz
 data/mysql/data 
 data/redis/
 data/leveldb 
+static
 logs
 .idea
